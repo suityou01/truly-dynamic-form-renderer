@@ -1,0 +1,15 @@
+GovukInput:
+  extends: BaseFormElement
+  macro_file: govuk/components/input/macro.njk
+  import: govUKInput
+  api:
+    label:
+      text: 
+        type: string
+        default: What is the name of the event?
+      classes:
+        type: string
+        default: govuk-label--l
+      isPageHeading: 
+        type: boolean
+        default: true

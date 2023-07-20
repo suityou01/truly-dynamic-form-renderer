@@ -1,0 +1,7 @@
+InputComponent:
+  macro_file: govuk/components/button/macro.njk
+  import: govukButton
+  api:
+    text: 
+      type: string
+      default: Save and continue

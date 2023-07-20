@@ -1,0 +1,17 @@
+FormElement:
+  extends: GovukInput
+  values:
+    label:
+      text: Please enter the code that was sent to you by email
+      isPageHeading: false
+    id: code
+    name: code
+
+{
+  _macro
+  _import
+  _name
+  label: {
+    test: "dsdsds"
+  }
+}

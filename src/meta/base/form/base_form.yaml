@@ -1,0 +1,8 @@
+BaseForm:
+  api:
+    id:
+      type: GUID
+    name:
+      type: string
+    urlPath:
+      type: string
