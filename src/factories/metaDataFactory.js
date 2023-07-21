@@ -12,22 +12,16 @@ class MetaDataFactory {
         return this;
     }
     getParentMetaData(extend) {
-        return;
+        return Services.metaDataService.getMetaData(extend);
     }
     getInheritedEntries(metaData) {
-        const { extend } = metaData;
-        let parentMetaData = this.getParentMetaData(extend);
-        parentMetaData = {
-            _api: {
-                id: {
-                    type: "string"
-                },
-                name: {
-                    type: "string"
-                },
-            }
+        const { _extends } = metaData;
+        let parentMetaData = this.getParentMetaData(_extends);
+        delete parentMetaData.file;
+        metaData._api = {
+            ...metaData._api,
+            ...parentMetaData.meta._api
         }
-        Object.assign(metaData, parentMetaData);
     }
     build(){
         let metaData = new MetaData();

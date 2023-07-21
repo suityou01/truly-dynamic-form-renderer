@@ -1,4 +1,7 @@
-const yamlFileLoaderService = require("./yamlFileLoaderService");
+require("../services");
+const YamlFileLoaderService = require("./yamlFileLoaderService");
+
+const yamlFileLoaderService = new YamlFileLoaderService();
 
 describe('./src/services/yamlFileLoaderService.js', () => {
     describe('Loading', () => {

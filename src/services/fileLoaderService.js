@@ -2,28 +2,46 @@ const fs = require('fs');
 const path = require('path');
 
 class FileLoaderService {
-    static #createAbsolutePath(relativePath){
+    #createAbsolutePath(relativePath){
         return path.join(__dirname, relativePath);
     }
-    static #checkFileExists(absolutePath) {
+    #checkFileExists(absolutePath) {
         return fs.existsSync(absolutePath);
     }
-    static load(relativePath){
-        const absPath = FileLoaderService.#createAbsolutePath(relativePath);
-        if(FileLoaderService.#checkFileExists(absPath)){
+    load(relativePath){
+        const absPath = this.#createAbsolutePath(relativePath);
+        if(this.#checkFileExists(absPath)){
             return fs.readFileSync(absPath, 'utf-8');
         }
         throw new Error(`Error reading file. Please check that the path exits and you have read permissions: ${absPath}`);
     }
-    static listDirectories(relativePath){
-        const absPath = FileLoaderService.#createAbsolutePath(relativePath);
-        if(FileLoaderService.#checkFileExists(absPath)){
-            return fs.readdirSync(absPath);
-        }
-        return [];
+    listDirectories(relativePath){
+        let dirs = [];
+        const absolutePath = this.#createAbsolutePath(relativePath);
+        const items = fs.readdirSync(absolutePath, { withFileTypes: true });
+
+        for (const item of items) {
+            if (item.isDirectory()) {
+                dirs.push(`${relativePath}${item.name}`);
+                dirs = [
+                    ...dirs,
+                    ...(this.listDirectories(`${relativePath}${item.name}/`)),
+                ];
+            }
+        };
+
+        return dirs;
     }
-    static listFiles(relativePath) {
-        return FileLoaderService.listDirectories(relativePath);
+    listFiles(relativePath) {
+        let files = [];
+        const absolutePath = this.#createAbsolutePath(relativePath);
+        const items = fs.readdirSync(absolutePath, { withFileTypes: true });
+        for (const item of items) {
+            if (item.isFile()) {
+                files.push(item.name);
+            }
+        }
+        return files;
     }
 }
 

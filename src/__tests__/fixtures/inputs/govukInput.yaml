@@ -6,12 +6,3 @@ FormElement:
       isPageHeading: false
     id: code
     name: code
-
-{
-  _macro
-  _import
-  _name
-  label: {
-    test: "dsdsds"
-  }
-}
