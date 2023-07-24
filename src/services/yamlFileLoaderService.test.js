@@ -9,6 +9,7 @@ describe('./src/services/yamlFileLoaderService.js', () => {
             const testYamlFile = '../__tests__/fixtures/inputs/govukInput.yaml';
             const yaml = yamlFileLoaderService.load(testYamlFile);
             expect(typeof yaml).toEqual('object');
+            expect(yaml.FormElement.extends).toEqual('GovukInput');
             console.log(yaml);
         }); 
     });

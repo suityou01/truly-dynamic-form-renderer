@@ -4,15 +4,17 @@ describe('./src/engine', () => {
     describe('startup', () => {
         it('should load all metadata', () => {
             const e = new Engine();
+            e.loadMetaData();
             expect(e).toBeTruthy();
+            expect(e.getAllMetaData()).toBeTruthy();
         });
         it('should retrieve a metadata object by name', () => {
             const e = new Engine();
             e.loadMetaData();
             const bfe = e.getMetaData('BaseFormElement');
-            console.log(bfe);
+            expect(bfe.meta._name).toEqual("BaseFormElement");
             const input = e.getMetaData('GovukInput');
-            console.log(input);
+            expect(input.meta._name).toEqual('GovukInput');
         });
     });    
 });

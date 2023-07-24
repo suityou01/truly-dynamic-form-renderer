@@ -22,6 +22,9 @@ class MetaDataService {
     getMetaData(name) {
         return this._meta.filter(m => m.meta._name === name)[0];
     }
+    getAllMetaData() {
+        return this._meta;
+    }
     static loadMetaData(relativePath){
         return yamlFileLoaderService.load(relativePath);
     }

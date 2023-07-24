@@ -7,6 +7,9 @@ class Engine {
     loadMetaData(){
         Services.metaDataService.loadMetaData();
     }
+    getAllMetaData() {
+        return Services.metaDataService.getAllMetaData();
+    }
     getMetaData(name) {
         return Services.metaDataService.getMetaData(name);
     }
