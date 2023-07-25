@@ -1,0 +1,9 @@
+@startuml
+Engine -> Services
+Services -> Services : LoadServices()
+Engine -> Factories
+Factories -> Factories: LoadFactories()
+Engine -> Services
+Services -> MetaDataService
+MetaDataService -> MetaDataService: LoadMetaData()
+@enduml
