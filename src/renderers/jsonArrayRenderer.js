@@ -3,10 +3,12 @@ const BaseRenderer = require("./baseRenderer.js")
 class JSONArrayRenderer extends BaseRenderer{
     _json;
     _renderSpec;
-    constructor(json, renderspec) {
+    _instrinsicFunctions;
+    constructor(json, renderspec, intrinsicFunctions) {
         super();
         this._json = json;
         this._renderSpec = renderspec;
+        this._instrinsicFunctions = intrinsicFunctions;
     }
 
     toString(){
@@ -17,12 +19,16 @@ class JSONArrayRenderer extends BaseRenderer{
         `
     }
     render(){
-        return this._json.map((item => {
-            Object.keys(this._renderSpec).map((k) => {
-                const renderSpec = this._renderSpec[k];
-                console.log(renderSpec);
-            });
-        }));
+        this._instrinsicFunctions.setState(this._json);
+        let result = {};
+        Object.keys(this._renderSpec).map((k) => {
+            const renderSpec = this._renderSpec[k];
+            let items = this._instrinsicFunctions
+                .setRefExpression(renderSpec)
+                .execute();
+            result[k] = items;
+        });
+        return result;
     }
 }
 

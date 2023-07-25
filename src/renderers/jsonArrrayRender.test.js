@@ -1,4 +1,5 @@
 const JSONArrayRenderer = require("./jsonArrayRenderer");
+const IntrinsicFunctions = require("../intrinsic_functions/refFunction");
 
 const json = [
     1,
@@ -69,8 +70,9 @@ describe('./src/renderers/jsonArrayRender.js', () => {
             text: "!Ref $item{odd}",
             selected: "!Ref $item{even} eq 1"
         }
-        let jsonArrayRender = new JSONArrayRenderer(json, renderSpec);
-        jsonArrayRender.render();
-
+        const intrinsicFunctions = new IntrinsicFunctions();
+        let jsonArrayRender = new JSONArrayRenderer(json, renderSpec, intrinsicFunctions);
+        const renderedJson = jsonArrayRender.render();
+        console.log(renderedJson);
     });
 });

@@ -27,9 +27,17 @@ const dispatchTable = {
 
 class RefFunction {
     _refExpression = '';
-    constructor(refExpression, state){
+    constructor({refExpression = "", state = {}}={}){
         this._refExpression = refExpression;
         this._state = state;
+    }
+    setRefExpression(expr) {
+        this._refExpression = expr;
+        return this;
+    }
+    setState(state) {
+        this._state = state;
+        return this;
     }
     parseExpression() {
         const expression = this._refExpression.match(/(?<=\!Ref\s).*$/gi);

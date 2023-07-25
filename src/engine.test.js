@@ -15,6 +15,7 @@ describe('./src/engine', () => {
             expect(bfe.meta._name).toEqual("BaseFormElement");
             const input = e.getMetaData('GovukInput');
             expect(input.meta._name).toEqual('GovukInput');
+            console.log(input.meta._api);
         });
     });    
 });

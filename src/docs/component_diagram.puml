@@ -1,0 +1,25 @@
+@startuml
+
+package "Services" {
+    [FileLoaderService]
+    [YamlFileLoaderService] ..> FileLoaderService
+    [MetaDataService] ..> YamlFileLoaderService
+    [RestDataService]
+}
+
+package "IntrinsicFunctions" {
+    [RefFunction]
+}
+
+package "Renderers" {
+    [JSONArrayRenderer] ..> IntrinsicFunctions
+}
+
+package "Compilers" {
+    [FormElementCompiler]
+}
+
+package "Factories" {
+    [FormElementFactory]
+    [MetaDataFactory] ..> MetaDataService
+}

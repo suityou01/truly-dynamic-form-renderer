@@ -1,7 +1,7 @@
 GovukInput:
   extends: BaseFormElement
   macro_file: govuk/components/input/macro.njk
-  import: govUKInput
+  import: govukInput
   api:
     label:
       text: 
