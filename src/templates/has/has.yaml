@@ -6,7 +6,7 @@ Template:
 ---
 
 Section:
-  Template: $Ref HAS
+  template: $Ref HAS
   name: Sectopn 1
   id: 234ae48f-451d-4222-8805-8fd96e9564ff
 

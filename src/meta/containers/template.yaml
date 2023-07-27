@@ -1,0 +1,12 @@
+$id: '/govuk/containers/template'
+type: object
+properties:
+  Page:
+    type: object
+    properties:
+      api:
+        name:
+          type: string
+        id:
+          type: object
+          

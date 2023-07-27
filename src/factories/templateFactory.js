@@ -38,6 +38,8 @@ class TemplateFactory {
             } else {
                 templateObject.part = this.getTemplatePart();
             }
+            templateObject.content = { ...this._raw };
+            templateObject._templateObjectName = templateObjectName;
         }
         catch(e) {
             console.log(e);

@@ -1,7 +1,10 @@
 class Template {
-    _name;
-    _id;
-    _part;
+    _templateObjectName = "";
+    _name = "";
+    _id = "";
+    _part = "";
+    _content;
+    _parts = [];
 
     get name() {
         return this._name;
@@ -22,6 +25,17 @@ class Template {
     }
     set part(value){
         this._part = value;
+    }
+
+    get content() {
+        return this._content;
+    }
+    set content(value) {
+        this._content = value;
+    }
+
+    get parts() {
+        return this._parts;
     }
 }
 

@@ -9,5 +9,6 @@ describe('./src/servics/templateService.js', () => {
         ts.loadAllTemplates();
         expect(Array.isArray(ts._templates)).toEqual(true);
         expect(ts._templates.length > 0).toEqual(true);
+        expect(ts._invalidTemplates.length).toEqual(0);
     });
 });
