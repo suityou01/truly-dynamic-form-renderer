@@ -29,7 +29,7 @@ properties:
             type: object
             properties:
               text:
-                type: stirng
+                type: string
               html:
                 type: string
               href:
@@ -37,7 +37,10 @@ properties:
               active:
                 type: boolean
               attributes:
-                type: ['object', any]
+                type: object
+                patternProperties:
+                  "^.*$":
+                    type: string
         navigationClasses:
           type: string
         navigationLabel:
@@ -51,4 +54,7 @@ properties:
         classes:
           type: string
         attributes:
-          type: ['object', any]
+          type: object
+          patternProperties:
+            "^.*$":
+              type: string

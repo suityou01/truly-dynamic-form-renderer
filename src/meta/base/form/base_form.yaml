@@ -6,8 +6,9 @@ properties:
     properties:
       api:
         id:
-          type: GUID
+          type: string
+          format: uuid
         name:
           type: string
-        urlPath:
+        url:
           type: string

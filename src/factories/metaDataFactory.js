@@ -29,7 +29,7 @@ class MetaDataFactory {
             writable: true,
             enumerable: true
         });
-        Object.assign(metaData[name].properties.api, parentMetaData[_extends].properties.api);
+        Object.assign(metaData[name].properties.api, parentMetaData.meta[_extends].properties.api);
     }
     build(){
         let metaData = new MetaData();

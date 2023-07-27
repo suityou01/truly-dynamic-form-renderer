@@ -1,0 +1,15 @@
+$id: '/govuk/containers/page'
+type: object
+properties:
+  Page:
+    type: object
+    properties:
+      api:
+        title:
+          type: string
+        header:
+          type: object
+          extends: GovukHeader
+        footer:
+          type: object
+          extends: GovukFooter

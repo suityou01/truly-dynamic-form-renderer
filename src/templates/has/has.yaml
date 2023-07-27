@@ -1,0 +1,12 @@
+Template:
+  HAS:
+    name: Householder Appeals Service
+    id: ee9ec28b-df53-4de7-ac63-9495968ac984
+
+---
+
+Section:
+  Template: $Ref HAS
+  name: Sectopn 1
+  id: 234ae48f-451d-4222-8805-8fd96e9564ff
+

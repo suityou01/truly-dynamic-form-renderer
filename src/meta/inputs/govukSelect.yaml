@@ -21,23 +21,25 @@ properties:
         hint:
           text:
             type: string
-        items: 
-          - item:
-              value: 
-                type: string,
-              text: 
-                type: string,
-              selected:
-                type: boolean
-            datasource:
+        items:
+          type: array
+          item:
+            value: 
               type: string
-              enum:
-                - rest
-                - template
-            url:
+            text: 
               type: string
-            method: 
-              type: string
-              default: GET
-            jsonPath:
-              type: text
+            selected:
+              type: boolean
+          datasource:
+            type: string
+            enum:
+              - rest
+              - template
+          url:
+            type: string
+          method: 
+            type: string
+            default: GET
+          jsonPath:
+            type: string
+

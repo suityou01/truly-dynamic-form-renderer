@@ -32,7 +32,7 @@ properties:
         name:
           type: string
         items:
-          type: Array
+          type: array
           item:
             type: object
             properties:
@@ -60,7 +60,10 @@ properties:
                   classes:
                     type: string
                   attributes:
-                    type: ['object', 'any']
+                    type: object
+                    patternProperties:
+                      "^.*$":
+                        type: string
               hint:
                 type: object
                 extends: Hint
@@ -78,6 +81,9 @@ properties:
               disabled:
                 type: boolean
               attributes:
-                type: ['object', 'any']
-              
+                type: object
+                patternProperties:
+                  "^.*$":
+                    type: string
+    additionalProperties: false               
 

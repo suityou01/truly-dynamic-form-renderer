@@ -1,0 +1,80 @@
+$id: /govuk/components/govukFooter
+type: object
+properties:
+  GovukFooter:
+    type: object
+    properties:
+      macro_file: 
+        type: string
+        const: govuk/components/footer/macro.njk
+      import: 
+        type: string
+        const: govukFooter
+      api:
+        type: object
+        properties:
+          meta:
+            type: object
+            properties:
+              visuallyHiddenTitle:
+                type: string
+              html:
+                type: string
+              text:
+                type: string
+              items:
+                type: array
+                item:
+                  text:
+                    type: string
+                  href: 
+                    type: string
+                  attributes:
+                    type: object
+                    patternProperties:
+                      "^.*$":
+                        type: string
+          navigation:
+            type: object
+            properties:
+              title: 
+                type: string
+              columns:
+                type: integer
+              width:
+                type: string
+              items:
+                type: array
+                item:
+                  text:
+                    type: string
+                  href:
+                    type: string
+                  attributes:
+                    type: object
+                    patternProperties:
+                      "^.*$":
+                        type: string
+          contentLicence:
+            type: object
+            properties:
+              text:
+                type: string
+              html:
+                type: string
+          copyright:
+            type: object
+            properties:
+              text:
+                type: string
+              html:
+                type: string
+          containerClasses:
+            type: string
+          classes:
+            type: string
+          attributes:
+            type: object
+            patternProperties:
+              "^.*$":
+                type: string

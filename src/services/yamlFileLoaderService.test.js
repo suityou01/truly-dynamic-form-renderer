@@ -10,7 +10,12 @@ describe('./src/services/yamlFileLoaderService.js', () => {
             const yaml = yamlFileLoaderService.load(testYamlFile);
             expect(typeof yaml).toEqual('object');
             expect(yaml.FormElement.extends).toEqual('GovukInput');
-            //console.log(yaml);
+        });
+        it('It should load a yaml file with multiple documents', () => {
+            const testYamlFile = '../__tests__/fixtures/templates/has.yaml';
+            const yaml = yamlFileLoaderService.loadAll(testYamlFile);
+            expect(typeof yaml).toEqual('object');
+            console.log(yaml);
         }); 
     });
 });
