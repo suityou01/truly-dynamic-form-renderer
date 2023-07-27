@@ -1,0 +1,54 @@
+$id: /govuk/components/govukHeader
+type: object
+properties:
+  GovukHeader:
+    type: object
+    properties:
+      macro_file: 
+        type: string
+        const: govuk/components/header/macro.njk
+      import: 
+        type: string
+        const: govukHeader
+      api:
+        homepageUri: 
+          type: string
+          default: /
+        assetsPath:
+          type: string
+          default: /assets/images
+        productName:
+          type: string
+        serviceName:
+          type: string
+        serviceUri:
+          type: string
+        navigation:
+          type: array
+          item:
+            type: object
+            properties:
+              text:
+                type: stirng
+              html:
+                type: string
+              href:
+                type: string
+              active:
+                type: boolean
+              attributes:
+                type: ['object', any]
+        navigationClasses:
+          type: string
+        navigationLabel:
+          type: string
+        menuButtonLabel:
+          type: string
+        menuButtonText:
+          type: string
+        containerClasses:
+          type: string
+        classes:
+          type: string
+        attributes:
+          type: ['object', any]

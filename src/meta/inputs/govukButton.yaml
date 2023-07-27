@@ -1,7 +1,40 @@
-InputComponent:
-  macro_file: govuk/components/button/macro.njk
-  import: govukButton
-  api:
-    text: 
-      type: string
-      default: Save and continue
+$id: /govuk/components/govukButton
+type: object
+properties:
+  GovukButton:
+    type: object
+    properties:
+      extends: 
+        type: string
+        const: BaseFormElement
+      macro_file: 
+        type: string
+        const: govuk/components/button/macro.njk
+      import: 
+        type: string
+        const: govukButton
+      api:
+        element:
+          type: string
+        text: 
+          type: string
+          default: Save and continue
+        html:
+          type: string
+        type:
+          type: string
+        value:
+          type: string
+        disabled:
+          type: boolean
+        href:
+          type: string
+        classes:
+          type: string
+        attributes:
+          type: ['object', 'any']
+        preventDoubleClick:
+          type: boolean
+        isStartButton:
+          type: boolean
+    additionalProperties: false

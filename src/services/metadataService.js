@@ -3,7 +3,7 @@ class MetaDataService {
     constructor(){
 
     }
-    loadMetaData() {
+    loadAllMetaData() {
 
         const metaDirectories = Services.fileLoaderService.listDirectories('../meta/');
         metaDirectories.forEach(dir => {
@@ -25,8 +25,8 @@ class MetaDataService {
     getAllMetaData() {
         return this._meta;
     }
-    static loadMetaData(relativePath){
-        return yamlFileLoaderService.load(relativePath);
+    loadMetaData(relativePath){
+        return Services.yamlFileLoaderService.load(relativePath);
     }
 }
 

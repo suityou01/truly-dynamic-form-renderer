@@ -1,0 +1,83 @@
+$id: /govuk/components/govukCheckboxes
+type: object
+properties:
+  GovukCheckboxes:
+    types: object
+    properties:
+      extends: 
+        type: string
+        const: BaseFormElement
+      macro_file: 
+        type: string
+        const: govuk/components/checkboxes/macro.njk
+      import: 
+        type: string
+        const: govukCheckboxes
+      api:
+        describedBy:
+          type: string
+        fieldset:
+          type: object
+          extends: govukFieldset
+        hint:
+          type: object
+          extends: Hint
+        errorMessage:
+          type: object
+          extends: GovukErrorMessage
+        formGroup:
+          type: object
+        idPrefix:
+          type: string
+        name:
+          type: string
+        items:
+          type: Array
+          item:
+            type: object
+            properties:
+              text:
+                type: string
+              html:
+                type: string
+              id: 
+                type: string
+              name:
+                type: string
+              value:
+                type: string
+              label:
+                type: object
+                properties:
+                  text:
+                    type: string
+                  html:
+                    type: string
+                  for:
+                    type: string
+                  isPageHeading:
+                    type: boolean
+                  classes:
+                    type: string
+                  attributes:
+                    type: ['object', 'any']
+              hint:
+                type: object
+                extends: Hint
+              divider:
+                type: string
+              checked:
+                type: boolean
+              conditional:
+                type: object
+                properties:
+                  html:
+                    type: string
+              behaviour:
+                type: string
+              disabled:
+                type: boolean
+              attributes:
+                type: ['object', 'any']
+              
+

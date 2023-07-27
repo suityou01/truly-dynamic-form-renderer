@@ -3,7 +3,6 @@ class MetaData {
     _extends;
     _macro_file;
     _import;
-    _api;
 
     constructor() {
 
@@ -37,13 +36,6 @@ class MetaData {
         this._import = value;
     }
 
-    get api() {
-        return this._api;
-    }
-    set api(value) {
-        this._api = value;
-    }
-
     toString() {
         return `
         {
@@ -51,7 +43,6 @@ class MetaData {
             extends: ${this._extends},
             macroFile: ${this._macro_file},
             import: ${this._import},
-            api: ${JSON.stringify(this._api, null, 2)}
         }`;
     }
 }

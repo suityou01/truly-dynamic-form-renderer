@@ -1,15 +1,66 @@
-GovukInput:
-  extends: BaseFormElement
-  macro_file: govuk/components/input/macro.njk
-  import: govukInput
-  api:
-    label:
-      text: 
+$id: /govuk/components/input
+type: object
+properties:
+  GovukInput:
+    type: object
+    properties:
+      extends: 
         type: string
-        default: What is the name of the event?
-      classes:
+        const: BaseFormElement
+      macro_file: 
         type: string
-        default: govuk-label--l
-      isPageHeading: 
-        type: boolean
-        default: true
+        const: govuk/components/input/macro.njk
+      import:
+        type: string
+        const: govukInput
+      api:
+        type: object
+        properties:
+          type:
+            type: string
+          inputmode:
+            type: string
+            enum:
+              - none
+              - text
+              - decimal
+              - numeric
+              - tel
+              - search
+              - email
+              - url
+          value:
+            type: string
+          disabled:
+            type: boolean
+          describedBy:
+            type: string
+          label:
+            type: object
+            properties:
+              text: 
+                type: string
+                default: What is the name of the event?
+              classes:
+                type: string
+                default: govuk-label--l
+              isPageHeading: 
+                type: boolean
+                default: true
+          hint:
+            type: object
+            properties:
+              text:
+                type: string
+              html:
+                type: string
+              id:
+                type: string
+              classes:
+                type: string
+              attributes:
+                type: object
+                patternProperties:
+                  "^.*$":
+                    type: string
+    additionalProperties: false              

@@ -1,0 +1,21 @@
+$id: /govuk/components/govukBackLink
+type: object
+properties:
+  GovukBackLink:
+    type: object
+    properties:
+      macro_file: govuk/components/back-link/macro.njk
+      import: govukBackLink
+      api:
+        type: object
+        properties:
+          text:
+            type: string
+          html:
+            type: string
+          href:
+            type: string
+          classes:
+            type: string
+          attributes:
+            type: ['object', 'any']

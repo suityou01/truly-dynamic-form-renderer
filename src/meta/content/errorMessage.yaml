@@ -1,0 +1,27 @@
+$id: /govuk/components/govukErrorMessage
+type: object
+properties:
+  GovukErrorMessage:
+    type: object
+    properties:
+      macro_file: 
+        type: string
+        const: govuk/components/error-message/macro.njk
+      import: 
+        type: string
+        const: govukErrorMessage
+      api:
+        type: object
+        properties:
+          text:
+            type: string
+          html:
+            type: string
+          id:
+            type: string
+          classes:
+            type: string
+          attributes:
+            type: ['object', 'any']
+          visuallyHiddentext:
+            type: string

@@ -1,0 +1,17 @@
+$id: /govuk/components/hint
+type: object
+properties:
+  Hint:
+    type: object
+    properties:
+      api:
+        text:
+          type: string
+        html:
+          type: string
+        id:
+          type: string
+        classes:
+          type: string
+        attributes:
+          type: ['object', 'any']

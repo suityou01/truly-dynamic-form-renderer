@@ -2,10 +2,9 @@ const MetaData = require("../types/metaType");
 
 class MetaDataFactory {
     _raw;
-    _metadataService = {};
-    constructor(yaml, metaDataService = {}){
+    
+    constructor(yaml){
         this._raw = yaml;
-        this._metadataService = {};
     }
     setRawObject(o){
         this._raw = o;
@@ -15,28 +14,56 @@ class MetaDataFactory {
         return Services.metaDataService.getMetaData(extend);
     }
     getInheritedEntries(metaData) {
-        const { _extends } = metaData;
+        const name = Object.keys(this._raw.properties)[0];
+        const _extends = metaData._extends;
         let parentMetaData = this.getParentMetaData(_extends);
-        delete parentMetaData.file;
-        metaData._api = {
-            ...metaData._api,
-            ...parentMetaData.meta._api
+        if(parentMetaData.hasOwnProperty('file')){
+            delete parentMetaData.file;
         }
+        Object.defineProperty(metaData, name, {
+            value: {
+                properties: {
+                    api: {}
+                }
+            },
+            writable: true,
+            enumerable: true
+        });
+        Object.assign(metaData[name].properties.api, parentMetaData[_extends].properties.api);
     }
     build(){
         let metaData = new MetaData();
-        metaData.name = Object.keys(this._raw)[0];
-        const value = Object.values(this._raw)[0];
-        if(value.hasOwnProperty('extends')){
-            metaData.extends = value.extends;
+        const name = Object.keys(this._raw.properties)[0];
+        const props = Object.values(this._raw.properties)[0];
+        const value = props;
+        
+        if(value.properties.hasOwnProperty('extends')){
+            metaData._extends = value.properties.extends.const;
             this.getInheritedEntries(metaData);
+        } else {
+            metaData[name] = {};
+            Object.assign(metaData[name], {
+                properties: {
+                    api: {}
+                }
+            });
         }
-        metaData.macroFile = value.macro_file;
-        metaData.import = value.import;
-        metaData.api = {
-            ...metaData.api,
-            ...value.api
-        };
+        
+        metaData[name].properties.api = {
+            ...metaData[name].properties.api,
+            ...value.properties.api
+        }
+        
+        metaData._name = name;
+        if(value.properties.hasOwnProperty('macro_file')){
+            metaData._macro_file = value.properties.macro_file.const;
+        }
+        if(value.properties.hasOwnProperty('import')){
+            metaData._import = value.properties.import.const;
+        }
+        if(props.hasOwnProperty('additionalProperties')){
+            metaData[name].additionalProperties = props.additionalProperties;
+        }
         return metaData;
     }
 }

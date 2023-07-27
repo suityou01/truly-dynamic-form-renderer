@@ -64,7 +64,7 @@ describe('goukInput', () => {
     it('should compile a template and metadata', () => {
         const formElementCompiler = new FormElementCompiler();
         const compiledFormElement = formElementCompiler.compile(template, metadata);
-        console.log(compiledFormElement.meta._api);
         expect(compiledFormElement.values).toEqual(compiled.values);
+        //console.log(compiledFormElement);
     });
 });

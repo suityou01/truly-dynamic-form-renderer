@@ -15,6 +15,7 @@ describe('./src/services/restDataService', () => {
 
         const rds = new RestDataService(restDataCommandMock);
         const result = await rds.do();
+        //console.log(result);
         expect(result.products[0].id).toEqual(1);
 
     });
@@ -33,6 +34,6 @@ describe('./src/services/restDataService', () => {
         const result = await rds.do();
         expect(result[0]).toEqual(1);
         expect(result[1]).toEqual('iPhone 9');
-        console.log(result);
+        //.log(result);
     });
 });

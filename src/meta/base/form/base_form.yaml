@@ -1,8 +1,13 @@
-BaseForm:
-  api:
-    id:
-      type: GUID
-    name:
-      type: string
-    urlPath:
-      type: string
+$id: '/abstractions/forms/baseform'
+type: object
+properties:
+  BaseForm:
+    type: object
+    properties:
+      api:
+        id:
+          type: GUID
+        name:
+          type: string
+        urlPath:
+          type: string

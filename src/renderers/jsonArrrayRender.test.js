@@ -73,6 +73,6 @@ describe('./src/renderers/jsonArrayRender.js', () => {
         const intrinsicFunctions = new IntrinsicFunctions();
         let jsonArrayRender = new JSONArrayRenderer(json, renderSpec, intrinsicFunctions);
         const renderedJson = jsonArrayRender.render();
-        console.log(renderedJson);
+        //console.log(renderedJson);
     });
 });

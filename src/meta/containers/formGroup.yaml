@@ -1,0 +1,9 @@
+$id: '/govuk/components/formgroup'
+type: object
+properties:
+  FormGroup:
+    type: object
+    properties:
+      api:
+        classes:
+          type: string

@@ -1,6 +1,11 @@
-BaseFormElement:
-  api:
-    id: 
-      type: string
-    name:
-      type: string
+$id: '/abstractions/forms/baseformelement'
+type: object
+properties:
+  BaseFormElement:
+    type: object
+    properties:
+      api:
+        id: 
+          type: string
+        name:
+          type: string

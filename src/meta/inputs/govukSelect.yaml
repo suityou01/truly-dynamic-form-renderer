@@ -1,32 +1,43 @@
-GovukSelect:
-  extends: BaseFormElement
-  macro_file: govuk/components/select/macro.njk
-  import: govukSelect
-  api:
-    label:
-      text: 
+$id: src/meta/inputs/govukSelect
+type: object
+properties:
+  GovukSelect:
+    type: object
+    properties:
+      extends: 
         type: string
-        default: What is the name of the event?
-    hint:
-      text:
+        const: BaseFormElement
+      macro_file: 
         type: string
-    items: 
-      - item:
-          value: 
-            type: string,
+        const: govuk/components/select/macro.njk
+      import:
+        type: string
+        const: govukSelect
+      api:
+        label:
           text: 
-            type: string,
-          selected:
-            type: boolean
-        datasource:
-          type: string
-          enum:
-            - rest
-            - template
-        url:
-          type: string
-        method: 
-          type: string
-          default: GET
-        jsonPath:
-          type: text
+            type: string
+            default: What is the name of the event?
+        hint:
+          text:
+            type: string
+        items: 
+          - item:
+              value: 
+                type: string,
+              text: 
+                type: string,
+              selected:
+                type: boolean
+            datasource:
+              type: string
+              enum:
+                - rest
+                - template
+            url:
+              type: string
+            method: 
+              type: string
+              default: GET
+            jsonPath:
+              type: text

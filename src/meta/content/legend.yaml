@@ -1,0 +1,16 @@
+$id: /govuk/components/legend
+type: object
+properties:
+  Legend:
+    type: object
+    properties:
+      api:
+        text:
+          type: string
+        html:
+          type: string
+        isPageHeading:
+          type: boolean
+        classes:
+          type: string
+        

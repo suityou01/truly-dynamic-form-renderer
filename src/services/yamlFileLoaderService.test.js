@@ -10,7 +10,7 @@ describe('./src/services/yamlFileLoaderService.js', () => {
             const yaml = yamlFileLoaderService.load(testYamlFile);
             expect(typeof yaml).toEqual('object');
             expect(yaml.FormElement.extends).toEqual('GovukInput');
-            console.log(yaml);
+            //console.log(yaml);
         }); 
     });
 });

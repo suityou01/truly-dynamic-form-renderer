@@ -1,0 +1,29 @@
+$id: /govuk/components/govukFieldset
+type: object
+properties: 
+  GovukFieldset:
+    type: object
+    properties:
+      macro_file: 
+        type: string
+        const: govuk/components/fieldset/macro.njk
+      import: 
+        type: string
+        const: govukFieldset
+      api:
+        describedBy:
+          type: text
+        legend:
+          type: object
+          extends: 
+            type: string
+            const: legend
+        classes:
+          type: string
+        role:
+          type: string
+        attributes:
+          type: ['object', 'any']
+        html:
+          type: string
+        
