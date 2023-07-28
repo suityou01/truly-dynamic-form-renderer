@@ -22,6 +22,9 @@ properties:
           classes:
             type: string
           attributes:
-            type: ['object', 'any']
+            type: object
+            patternProperties:
+              "^.*$":
+                type: string
           visuallyHiddentext:
             type: string

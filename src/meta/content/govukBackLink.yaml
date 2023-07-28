@@ -4,8 +4,12 @@ properties:
   GovukBackLink:
     type: object
     properties:
-      macro_file: govuk/components/back-link/macro.njk
-      import: govukBackLink
+      macro_file: 
+        type: string
+        const: govuk/components/back-link/macro.njk
+      import:
+        type: string
+        const: govukBackLink
       api:
         type: object
         properties:
@@ -18,4 +22,7 @@ properties:
           classes:
             type: string
           attributes:
-            type: ['object', 'any']
+            type: object
+            patternProperties:
+              "^.*$":
+                type: string

@@ -449,6 +449,92 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject.GovukFooter.properties.api.properties.attributes.patternProperties["^.*$"]).toHaveProperty('type', 'string');
                 
             });
+            it('./src/meta/content/govukBackLink.yaml', () => {
+
+                const metaDataFile = '../meta/content/govukBackLink.yaml';
+                const yaml = metaDataService.loadMetaData(metaDataFile);
+                const metaDataFactory = new MetaDataFactory(yaml);
+                const metaDataObject = metaDataFactory.build();
+                expect(metaDataObject).toHaveProperty('_name', 'GovukBackLink');
+                expect(metaDataObject).toHaveProperty('_macro_file', 'govuk/components/back-link/macro.njk');
+                expect(metaDataObject).toHaveProperty('_import', 'govukBackLink');
+                expect(metaDataObject.GovukBackLink.properties.api.properties).toHaveProperty('text');
+                expect(metaDataObject.GovukBackLink.properties.api.properties.text).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukBackLink.properties.api.properties).toHaveProperty('html');
+                expect(metaDataObject.GovukBackLink.properties.api.properties.html).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukBackLink.properties.api.properties).toHaveProperty('href');
+                expect(metaDataObject.GovukBackLink.properties.api.properties.href).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukBackLink.properties.api.properties).toHaveProperty('classes');
+                expect(metaDataObject.GovukBackLink.properties.api.properties.classes).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukBackLink.properties.api.properties).toHaveProperty('attributes');
+                expect(metaDataObject.GovukBackLink.properties.api.properties.attributes).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukBackLink.properties.api.properties.attributes).toHaveProperty('patternProperties');
+                expect(metaDataObject.GovukBackLink.properties.api.properties.attributes.patternProperties["^.*$"]).toHaveProperty('type', 'string');
+                
+            });
+            it('./src/meta/content/govukErrorMessage.yaml', () => {
+
+                const metaDataFile = '../meta/content/govukErrorMessage.yaml';
+                const yaml = metaDataService.loadMetaData(metaDataFile);
+                const metaDataFactory = new MetaDataFactory(yaml);
+                const metaDataObject = metaDataFactory.build();
+                expect(metaDataObject).toHaveProperty('_name', 'GovukErrorMessage');
+                expect(metaDataObject).toHaveProperty('_macro_file', 'govuk/components/error-message/macro.njk');
+                expect(metaDataObject).toHaveProperty('_import', 'govukErrorMessage');
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties).toHaveProperty('text');
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties.text).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties).toHaveProperty('html');
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties.html).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties).toHaveProperty('id');
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties.id).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties).toHaveProperty('classes');
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties.classes).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties).toHaveProperty('attributes');
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties.attributes).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties.attributes).toHaveProperty('patternProperties');
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties.attributes.patternProperties["^.*$"]).toHaveProperty('type', 'string');             
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties).toHaveProperty('visuallyHiddentext');
+                expect(metaDataObject.GovukErrorMessage.properties.api.properties.visuallyHiddentext).toHaveProperty('type', 'string');
+                
+            });
+            it('./src/meta/content/hint.yaml', () => {
+                
+                const metaDataFile = '../meta/content/hint.yaml';
+                const yaml = metaDataService.loadMetaData(metaDataFile);
+                const metaDataFactory = new MetaDataFactory(yaml);
+                const metaDataObject = metaDataFactory.build();
+                expect(metaDataObject).toHaveProperty('_name', 'Hint');
+                expect(metaDataObject.Hint.properties.api.properties).toHaveProperty('text');
+                expect(metaDataObject.Hint.properties.api.properties.text).toHaveProperty('type', 'string');
+                expect(metaDataObject.Hint.properties.api.properties).toHaveProperty('html');
+                expect(metaDataObject.Hint.properties.api.properties.html).toHaveProperty('type', 'string');
+                expect(metaDataObject.Hint.properties.api.properties).toHaveProperty('id');
+                expect(metaDataObject.Hint.properties.api.properties.id).toHaveProperty('type', 'string');
+                expect(metaDataObject.Hint.properties.api.properties).toHaveProperty('classes');
+                expect(metaDataObject.Hint.properties.api.properties.classes).toHaveProperty('type', 'string');
+                expect(metaDataObject.Hint.properties.api.properties).toHaveProperty('attributes');
+                expect(metaDataObject.Hint.properties.api.properties.attributes).toHaveProperty('type', 'object');
+                expect(metaDataObject.Hint.properties.api.properties.attributes).toHaveProperty('patternProperties');
+                expect(metaDataObject.Hint.properties.api.properties.attributes.patternProperties["^.*$"]).toHaveProperty('type', 'string');             
+                             
+            });
+            it('./src/meta/content/legend.yaml', () => {
+                
+                const metaDataFile = '../meta/content/legend.yaml';
+                const yaml = metaDataService.loadMetaData(metaDataFile);
+                const metaDataFactory = new MetaDataFactory(yaml);
+                const metaDataObject = metaDataFactory.build();
+                expect(metaDataObject).toHaveProperty('_name', 'Legend');
+                expect(metaDataObject.Legend.properties.api.properties).toHaveProperty('text');
+                expect(metaDataObject.Legend.properties.api.properties.text).toHaveProperty('type', 'string');
+                expect(metaDataObject.Legend.properties.api.properties).toHaveProperty('html');
+                expect(metaDataObject.Legend.properties.api.properties.html).toHaveProperty('type', 'string');
+                expect(metaDataObject.Legend.properties.api.properties).toHaveProperty('classes');
+                expect(metaDataObject.Legend.properties.api.properties.classes).toHaveProperty('type', 'string');
+                expect(metaDataObject.Legend.properties.api.properties).toHaveProperty('isPageHeading');
+                expect(metaDataObject.Legend.properties.api.properties.isPageHeading).toHaveProperty('type', 'boolean');
+                             
+            });
         });
     });
 });

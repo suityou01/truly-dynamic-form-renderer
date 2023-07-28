@@ -5,13 +5,18 @@ properties:
     type: object
     properties:
       api:
-        text:
-          type: string
-        html:
-          type: string
-        id:
-          type: string
-        classes:
-          type: string
-        attributes:
-          type: ['object', 'any']
+        type: object
+        properties:
+          text:
+            type: string
+          html:
+            type: string
+          id:
+            type: string
+          classes:
+            type: string
+          attributes:
+            type: object
+            patternProperties:
+              "^.*$":
+                type: string

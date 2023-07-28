@@ -5,12 +5,14 @@ properties:
     type: object
     properties:
       api:
-        text:
-          type: string
-        html:
-          type: string
-        isPageHeading:
-          type: boolean
-        classes:
-          type: string
-        
+        type: object
+        properties:
+          text:
+            type: string
+          html:
+            type: string
+          isPageHeading:
+            type: boolean
+          classes:
+            type: string
+          
