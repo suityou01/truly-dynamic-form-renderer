@@ -535,6 +535,73 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject.Legend.properties.api.properties.isPageHeading).toHaveProperty('type', 'boolean');
                              
             });
+            it('./src/meta/containers/formGroup.yaml', () => {
+                
+                const metaDataFile = '../meta/containers/formGroup.yaml';
+                const yaml = metaDataService.loadMetaData(metaDataFile);
+                const metaDataFactory = new MetaDataFactory(yaml);
+                const metaDataObject = metaDataFactory.build();
+                expect(metaDataObject.FormGroup.properties.api.properties).toHaveProperty('classes');
+                expect(metaDataObject.FormGroup.properties.api.properties.classes).toHaveProperty('type', 'string');
+                             
+            });
+            it('./src/meta/containers/govukFieldset.yaml', () => {
+
+                const metaDataFile = '../meta/containers/govukFieldset.yaml';
+                const yaml = metaDataService.loadMetaData(metaDataFile);
+                const metaDataFactory = new MetaDataFactory(yaml);
+                const metaDataObject = metaDataFactory.build();
+                expect(metaDataObject).toHaveProperty('_name', 'GovukFieldset');
+                expect(metaDataObject).toHaveProperty('_macro_file', 'govuk/components/fieldset/macro.njk');
+                expect(metaDataObject).toHaveProperty('_import', 'govukFieldset');
+                expect(metaDataObject.GovukFieldset.properties.api.properties).toHaveProperty('describedBy');
+                expect(metaDataObject.GovukFieldset.properties.api.properties.describedBy).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukFieldset.properties.api.properties).toHaveProperty('legend');
+                expect(metaDataObject.GovukFieldset.properties.api.properties.legend).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukFieldset.properties.api.properties.legend).toHaveProperty('extends');
+                expect(metaDataObject.GovukFieldset.properties.api.properties.legend.extends).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukFieldset.properties.api.properties.legend.extends).toHaveProperty('const', 'Legend');
+                expect(metaDataObject.GovukFieldset.properties.api.properties).toHaveProperty('classes');
+                expect(metaDataObject.GovukFieldset.properties.api.properties.classes).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukFieldset.properties.api.properties).toHaveProperty('role');
+                expect(metaDataObject.GovukFieldset.properties.api.properties.role).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukFieldset.properties.api.properties).toHaveProperty('attributes');
+                expect(metaDataObject.GovukFieldset.properties.api.properties.attributes).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukFieldset.properties.api.properties.attributes).toHaveProperty('patternProperties');
+                expect(metaDataObject.GovukFieldset.properties.api.properties.attributes.patternProperties["^.*$"]).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukFieldset.properties.api.properties).toHaveProperty('html');
+                expect(metaDataObject.GovukFieldset.properties.api.properties.html).toHaveProperty('type', 'string');
+                             
+            });
+            it('./src/meta/containers/page.yaml', () => {
+
+                const metaDataFile = '../meta/containers/page.yaml';
+                const yaml = metaDataService.loadMetaData(metaDataFile);
+                const metaDataFactory = new MetaDataFactory(yaml);
+                const metaDataObject = metaDataFactory.build();
+                expect(metaDataObject.Page.properties.api.properties).toHaveProperty('title');
+                expect(metaDataObject.Page.properties.api.properties.title).toHaveProperty('type', 'string');
+                expect(metaDataObject.Page.properties.api.properties).toHaveProperty('header');
+                expect(metaDataObject.Page.properties.api.properties.header).toHaveProperty('type', 'object');
+                expect(metaDataObject.Page.properties.api.properties.header).toHaveProperty('extends', 'GovukHeader');
+                expect(metaDataObject.Page.properties.api.properties).toHaveProperty('footer');
+                expect(metaDataObject.Page.properties.api.properties.footer).toHaveProperty('type', 'object');
+                expect(metaDataObject.Page.properties.api.properties.footer).toHaveProperty('extends', 'GovukFooter');
+                
+            });
+            it('./src/meta/containers/template.yaml', () => {
+
+                const metaDataFile = '../meta/containers/template.yaml';
+                const yaml = metaDataService.loadMetaData(metaDataFile);
+                const metaDataFactory = new MetaDataFactory(yaml);
+                const metaDataObject = metaDataFactory.build();
+                expect(metaDataObject.Template.properties.api.properties).toHaveProperty('name');
+                expect(metaDataObject.Template.properties.api.properties.name).toHaveProperty('type', 'string');
+                expect(metaDataObject.Template.properties.api.properties).toHaveProperty('id');
+                expect(metaDataObject.Template.properties.api.properties.id).toHaveProperty('type', 'string');
+                expect(metaDataObject.Template.properties.api.properties.id).toHaveProperty('format', 'uuid');
+                
+            });
         });
     });
 });

@@ -11,19 +11,24 @@ properties:
         type: string
         const: govukFieldset
       api:
-        describedBy:
-          type: text
-        legend:
-          type: object
-          extends: 
+        type: object
+        properties:
+          describedBy:
             type: string
-            const: legend
-        classes:
-          type: string
-        role:
-          type: string
-        attributes:
-          type: ['object', 'any']
-        html:
-          type: string
-        
+          legend:
+            type: object
+            extends: 
+              type: string
+              const: Legend
+          classes:
+            type: string
+          role:
+            type: string
+          attributes:
+            type: object
+            patternProperties:
+              "^.*$":
+                type: string
+          html:
+            type: string
+          

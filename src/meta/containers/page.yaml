@@ -5,11 +5,13 @@ properties:
     type: object
     properties:
       api:
-        title:
-          type: string
-        header:
-          type: object
-          extends: GovukHeader
-        footer:
-          type: object
-          extends: GovukFooter
+        type: object
+        properties:
+          title:
+            type: string
+          header:
+            type: object
+            extends: GovukHeader
+          footer:
+            type: object
+            extends: GovukFooter
