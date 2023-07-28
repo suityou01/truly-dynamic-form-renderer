@@ -17,12 +17,10 @@ class PartLinker {
         if(this.isTopLevelTemplate(parent)){
             return this._templateLinker.getParentMetaData(parent);
         }
-        return {};
     }
-    getParentProperties(parent){
-        console.log(parent);
-        const name = parent.meta._name;
-        const metaClass = parent.meta[name];
+    getParentProperties(metaData){
+        const name = metaData.meta._name;
+        const metaClass = metaData.meta[name];
         return metaClass.properties;
     }
     getExtendableProperties(properties){
@@ -46,7 +44,11 @@ class PartLinker {
     link(){
         const parent = this.getParent();
         const parentMetaData = this.getParentMetaData(parent);
-        console.log(parentMetaData);
+        const parentProperties = this .getParentProperties(parentMetaData);
+        const extendableProperties = this.getExtendableProperties(parentProperties.api.properties);
+        const part = {...this._template.template._content};
+        const extendablePropertyValues = extendableProperties.map(extendableProperty => parentProperties.api.properties[extendableProperties]);
+        console.log(extendablePropertyValues);
     }
 }
 
