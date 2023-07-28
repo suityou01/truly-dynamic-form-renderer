@@ -34,6 +34,14 @@ class TemplateFactory {
     getTemplatePartId(){
         return Object.values(this._raw)[0].id;
     }
+    getTemplatePartContent(){
+        return Object.values(this._raw)[0].content;
+    }
+    getTemplatePartExtends(){
+        const content = this.getTemplatePartContent();
+        const partContent = Object.values(content)[0];
+        return partContent.extends;
+    }
     getTemplateExtends(templateObjectName){
         if(this._raw.Template[templateObjectName].hasOwnProperty('extends')){
             return this._raw.Template[templateObjectName].extends;
@@ -44,6 +52,7 @@ class TemplateFactory {
     }
     build(){
         const templateObject = new Template();
+        templateObject.content = { ...this._raw };
         try {
             if(this.isTopLevelTemplate()) {
                 let templateObjectName = this.getTemplateObjectName();
@@ -55,8 +64,8 @@ class TemplateFactory {
                 templateObject.part = this.getTemplatePart();
                 templateObject.name = this.getTemplatePartName();
                 templateObject.id = this.getTemplatePartId();
+                templateObject.extends = Object.values(this._raw)[0].extends;
             }
-            templateObject.content = { ...this._raw };
         }
         catch(e) {
             console.log(e);

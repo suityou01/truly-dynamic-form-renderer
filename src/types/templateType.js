@@ -45,6 +45,17 @@ class Template {
     get parts() {
         return this._parts;
     }
+
+    toString(){
+        return JSON.stringify({
+            extends: this.extends,
+            name: this.name,
+            id: this.id,
+            part: this.part,
+            content: this.content,
+            parts: this.parts
+        }, null, 2);
+    }
 }
 
 module.exports = Template;

@@ -5,6 +5,7 @@ const TemplateService = require("./templateService");
 
 describe('./src/servics/templateService.js', () => {
     beforeAll(()=> {
+        Services.metaDataService.loadAllMetaData();
         Services.templateService.loadAllTemplates();
     })
     it('should retrieve a template by TemplateObjectName', ()=> {
@@ -34,4 +35,11 @@ describe('./src/servics/templateService.js', () => {
         const template = Services.templateService.getPartTemplate(templatePart.template);
         expect(template).toBeTruthy();
     });
+    it('should retrieve a parent template', () => {
+        const documents = '../templates/has/has.yaml';
+        const yaml = Services.yamlFileLoaderService.loadAll(documents)[2];
+        const template = Factories.templateFactory.setRawObject(yaml).build();
+        const parent = Services.templateService.getParent(template);
+        const grandParent = Services.templateService.getParent(parent);
+    })
 });
