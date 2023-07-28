@@ -579,6 +579,13 @@ describe('./src/factories/metaDataFactory.js', () => {
                 const yaml = metaDataService.loadMetaData(metaDataFile);
                 const metaDataFactory = new MetaDataFactory(yaml);
                 const metaDataObject = metaDataFactory.build();
+                expect(metaDataObject.Page.properties.api.properties).toHaveProperty('id');
+                expect(metaDataObject.Page.properties.api.properties.id).toHaveProperty('type', 'string');
+                expect(metaDataObject.Page.properties.api.properties.id).toHaveProperty('format', 'uuid');
+                expect(metaDataObject.Page.properties.api.properties).toHaveProperty('section');
+                expect(metaDataObject.Page.properties.api.properties.section).toHaveProperty('type', 'string');
+                expect(metaDataObject.Page.properties.api.properties).toHaveProperty('extends');
+                expect(metaDataObject.Page.properties.api.properties.extends).toHaveProperty('type', 'string');
                 expect(metaDataObject.Page.properties.api.properties).toHaveProperty('title');
                 expect(metaDataObject.Page.properties.api.properties.title).toHaveProperty('type', 'string');
                 expect(metaDataObject.Page.properties.api.properties).toHaveProperty('header');
@@ -595,6 +602,8 @@ describe('./src/factories/metaDataFactory.js', () => {
                 const yaml = metaDataService.loadMetaData(metaDataFile);
                 const metaDataFactory = new MetaDataFactory(yaml);
                 const metaDataObject = metaDataFactory.build();
+                expect(metaDataObject.Template.properties.api.properties).toHaveProperty('extends');
+                expect(metaDataObject.Template.properties.api.properties.extends).toHaveProperty('type', 'string');
                 expect(metaDataObject.Template.properties.api.properties).toHaveProperty('name');
                 expect(metaDataObject.Template.properties.api.properties.name).toHaveProperty('type', 'string');
                 expect(metaDataObject.Template.properties.api.properties).toHaveProperty('id');

@@ -28,18 +28,35 @@ class TemplateFactory {
     getTemplatePart(){
         return Object.keys(this._raw)[0];
     }
+    getTemplatePartName(){
+        return Object.values(this._raw)[0].name;
+    }
+    getTemplatePartId(){
+        return Object.values(this._raw)[0].id;
+    }
+    getTemplateExtends(templateObjectName){
+        if(this._raw.Template[templateObjectName].hasOwnProperty('extends')){
+            return this._raw.Template[templateObjectName].extends;
+        }
+    }
+    isTopLevelTemplate(){
+        return this._raw.hasOwnProperty('Template');
+    }
     build(){
         const templateObject = new Template();
         try {
-            let templateObjectName = this.getTemplateObjectName();
-            if(templateObjectName!="") {
+            if(this.isTopLevelTemplate()) {
+                let templateObjectName = this.getTemplateObjectName();
+                templateObject._templateObjectName = templateObjectName;
                 templateObject.name = this.getTemplateName(templateObjectName);
                 templateObject.id = this.getTemplateId(templateObjectName);
+                templateObject.extends = this.getTemplateExtends(templateObjectName);
             } else {
                 templateObject.part = this.getTemplatePart();
+                templateObject.name = this.getTemplatePartName();
+                templateObject.id = this.getTemplatePartId();
             }
             templateObject.content = { ...this._raw };
-            templateObject._templateObjectName = templateObjectName;
         }
         catch(e) {
             console.log(e);

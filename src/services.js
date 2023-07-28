@@ -12,7 +12,7 @@ global.Services = {
     metaDataService: metaDataService,
     yamlFileLoaderService: yamlFileLoaderService,
     fileLoaderService: fileLoaderService,
-    templateservice: templateService
+    templateService: templateService
 }
 
 module.exports = {

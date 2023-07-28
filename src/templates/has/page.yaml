@@ -1,5 +1,6 @@
 Template:
-  Page:
+  HASPage:
+    extends: Page
     name: HASPage
     id: 70c3c98c-9e50-4585-9888-f06e295b1431
     header:

@@ -1,10 +1,18 @@
 class Template {
     _templateObjectName = "";
+    _extends = "";
     _name = "";
     _id = "";
     _part = "";
     _content;
     _parts = [];
+
+    get extends() {
+        return this._extends;
+    }
+    set extends(value) {
+        this._extends = value;
+    }
 
     get name() {
         return this._name;

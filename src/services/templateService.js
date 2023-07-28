@@ -24,16 +24,33 @@ class TemplateService {
     validateTemplate(templateObject) {
         return true;
     }
-    getTemplateFromReference(ref){
+    getTemplateNameFromReference(ref = ""){
         const refRegEx = /^\$ref\s/gi;
-        if(refRegEx.test(ref)){
-            const templateName = ref.replace(refRegEx,'');
+        const templateName = ref.replace(refRegEx,'');
+        return templateName;
+    }
+    getTemplateFromReference(ref){
+        const templateName = this.getTemplateNameFromReference(ref);
+        if(templateName!=""){
             const template = this.getTemplateByTemplateObjectName(templateName);
             return template;
         }
+        return "";
+    }
+    getPartByName(partName, templateObjectName){
+        const template = this.getTemplateByTemplateObjectName(templateObjectName);
+        return template.template._parts.filter(part => 
+            part.template._name === partName
+        )[0];
+    }
+    getPartById(id, templateObjectName){
+        const template = this.getTemplateByTemplateObjectName(templateObjectName);
+        return template.template._parts.filter(part => 
+            part.template._id === id
+        )[0];
     }
     getPartTemplate(templateObject){
-        let content = templateObject.content;
+        let content = templateObject._content;
         let belongsToTemplate = Object.values(content)[0].template;
         let templateReference = this.getTemplateFromReference(belongsToTemplate);
         return templateReference;
@@ -58,10 +75,17 @@ class TemplateService {
                             });
                         } else {
                             const belongsToTemplate = this.getPartTemplate(templateObject);
-                            belongsToTemplate.template._parts.push({
-                                file: file,
-                                template: templateObject
-                            });
+                            if(!belongsToTemplate){
+                                this._orphans.push({
+                                    file: file,
+                                    template: templateObject
+                                });                              
+                            } else {
+                                belongsToTemplate.template._parts.push({
+                                    file: file,
+                                    template: templateObject
+                                });
+                            }
                         }
                     } else{
                         this._invalidTemplates.push({
@@ -73,6 +97,9 @@ class TemplateService {
             });    
         });
         
+    }
+    listTemplates(){
+        return this._templates;
     }
 }
 

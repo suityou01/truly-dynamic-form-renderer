@@ -7,6 +7,14 @@ Template:
 
 Section:
   template: $Ref HAS
-  name: Sectopn 1
+  name: Section1
   id: 234ae48f-451d-4222-8805-8fd96e9564ff
 
+---
+
+Page:
+  id: 8b148a5d-d37e-414a-a71b-08017681b0d0
+  template: $Ref HAS
+  section: $Ref Section1
+  title: Before you start - Appeal a planning decision - GOV.UK
+  extends: HASPage

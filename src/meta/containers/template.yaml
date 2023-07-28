@@ -7,6 +7,8 @@ properties:
       api:
         type: object
         properties:
+          extends:
+            type: string
           name:
             type: string
           id:
