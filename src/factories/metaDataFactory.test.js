@@ -12,9 +12,8 @@ describe('./src/factories/metaDataFactory.js', () => {
             const metaDataFactory = new MetaDataFactory(yaml);
             const metaDataObject = metaDataFactory.build();
             expect(metaDataObject._name).toEqual('GovukInput');
-            expect(metaDataObject.GovukInput.properties.api).toHaveProperty('id');   // <<---- inherited from BaseFormElement
-            expect(metaDataObject.GovukInput.properties.api).toHaveProperty('name'); // <<---- inherited from BaseFormElement
-            expect(metaDataObject.GovukInput.properties.api).toHaveProperty('type', 'object'); // <<---- defined on the metaDataObject
+            expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('id');   // <<---- inherited from BaseFormElement
+            expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('name'); // <<---- inherited from BaseFormElement
             expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('label'); // <<---- defined on the metaDataObject
         });
         describe('Specific Meta data tests', () => {
@@ -26,10 +25,10 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject).toHaveProperty('BaseFormElement');
                 expect(metaDataObject.BaseFormElement).toHaveProperty('properties');
                 expect(metaDataObject.BaseFormElement.properties).toHaveProperty('api');
-                expect(metaDataObject.BaseFormElement.properties.api).toHaveProperty('id');
-                expect(metaDataObject.BaseFormElement.properties.api.id).toHaveProperty('type', 'string');
-                expect(metaDataObject.BaseFormElement.properties.api).toHaveProperty('name');
-                expect(metaDataObject.BaseFormElement.properties.api.name).toHaveProperty('type', 'string');
+                expect(metaDataObject.BaseFormElement.properties.api.properties).toHaveProperty('id');
+                expect(metaDataObject.BaseFormElement.properties.api.properties.id).toHaveProperty('type', 'string');
+                expect(metaDataObject.BaseFormElement.properties.api.properties).toHaveProperty('name');
+                expect(metaDataObject.BaseFormElement.properties.api.properties.name).toHaveProperty('type', 'string');
             });
             it('./src/meta/form/base/base_form.yaml', () => {
                 const metaDataFile = '../meta/base/form/base_form.yaml';
@@ -39,13 +38,13 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject).toHaveProperty('BaseForm');
                 expect(metaDataObject.BaseForm).toHaveProperty('properties');
                 expect(metaDataObject.BaseForm.properties).toHaveProperty('api');
-                expect(metaDataObject.BaseForm.properties.api).toHaveProperty('id');
-                expect(metaDataObject.BaseForm.properties.api.id).toHaveProperty('type', 'string');
-                expect(metaDataObject.BaseForm.properties.api.id).toHaveProperty('format', 'uuid');
-                expect(metaDataObject.BaseForm.properties.api).toHaveProperty('name');
-                expect(metaDataObject.BaseForm.properties.api.name).toHaveProperty('type', 'string');
-                expect(metaDataObject.BaseForm.properties.api).toHaveProperty('url');
-                expect(metaDataObject.BaseForm.properties.api.url).toHaveProperty('type', 'string');
+                expect(metaDataObject.BaseForm.properties.api.properties).toHaveProperty('id');
+                expect(metaDataObject.BaseForm.properties.api.properties.id).toHaveProperty('type', 'string');
+                expect(metaDataObject.BaseForm.properties.api.properties.id).toHaveProperty('format', 'uuid');
+                expect(metaDataObject.BaseForm.properties.api.properties).toHaveProperty('name');
+                expect(metaDataObject.BaseForm.properties.api.properties.name).toHaveProperty('type', 'string');
+                expect(metaDataObject.BaseForm.properties.api.properties).toHaveProperty('url');
+                expect(metaDataObject.BaseForm.properties.api.properties.url).toHaveProperty('type', 'string');
             });
             it('./src/inputs/govukButton.yaml', () => {
                 const metaDataFile = '../meta/inputs/govukButton.yaml';
@@ -58,12 +57,14 @@ describe('./src/factories/metaDataFactory.js', () => {
                         "BaseFormElement": {
                         "properties": {
                             "api": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "name": {
-                                "type": "string"
-                            }
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
                             }
                         }
                         }
@@ -75,33 +76,35 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject).toHaveProperty('_extends', 'BaseFormElement');
                 expect(metaDataObject).toHaveProperty('_macro_file', 'govuk/components/button/macro.njk');
                 expect(metaDataObject).toHaveProperty('_import', 'govukButton');
-                expect(metaDataObject.GovukButton.properties.api).toHaveProperty('id');   // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukButton.properties.api.id).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukButton.properties.api).toHaveProperty('name'); // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukButton.properties.api.name).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukButton.properties.api).toHaveProperty('element'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukButton.properties.api.element).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukButton.properties.api).toHaveProperty('text'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukButton.properties.api.text).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukButton.properties.api.text).toHaveProperty('default', 'Save and continue');
-                expect(metaDataObject.GovukButton.properties.api).toHaveProperty('html'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukButton.properties.api.html).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukButton.properties.api).toHaveProperty('type'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukButton.properties.api.type).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukButton.properties.api).toHaveProperty('value'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukButton.properties.api.value).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukButton.properties.api).toHaveProperty('disabled'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukButton.properties.api.disabled).toHaveProperty('type', 'boolean');
-                expect(metaDataObject.GovukButton.properties.api).toHaveProperty('href'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukButton.properties.api.href).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukButton.properties.api).toHaveProperty('classes'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukButton.properties.api.classes).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukButton.properties.api).toHaveProperty('attributes'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukButton.properties.api.attributes).toHaveProperty('type', ['object', 'any']);
-                expect(metaDataObject.GovukButton.properties.api).toHaveProperty('preventDoubleClick'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukButton.properties.api.preventDoubleClick).toHaveProperty('type', 'boolean');
-                expect(metaDataObject.GovukButton.properties.api).toHaveProperty('isStartButton'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukButton.properties.api.isStartButton).toHaveProperty('type', 'boolean');
+                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('id');   // <<---- inherited from BaseFormElement
+                expect(metaDataObject.GovukButton.properties.api.properties.id).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('name'); // <<---- inherited from BaseFormElement
+                expect(metaDataObject.GovukButton.properties.api.properties.name).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('element'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukButton.properties.api.properties.element).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('text'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukButton.properties.api.properties.text).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukButton.properties.api.properties.text).toHaveProperty('default', 'Save and continue');
+                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('html'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukButton.properties.api.properties.html).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('type'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukButton.properties.api.properties.type).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('value'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukButton.properties.api.properties.value).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('disabled'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukButton.properties.api.properties.disabled).toHaveProperty('type', 'boolean');
+                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('href'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukButton.properties.api.properties.href).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('classes'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukButton.properties.api.properties.classes).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('attributes');
+                expect(metaDataObject.GovukButton.properties.api.properties.attributes).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukButton.properties.api.properties.attributes).toHaveProperty('patternProperties');
+                expect(metaDataObject.GovukButton.properties.api.properties.attributes.patternProperties['^.*$']).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('preventDoubleClick'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukButton.properties.api.properties.preventDoubleClick).toHaveProperty('type', 'boolean');
+                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('isStartButton'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukButton.properties.api.properties.isStartButton).toHaveProperty('type', 'boolean');
                 expect(metaDataObject.GovukButton).toHaveProperty('additionalProperties', false);
             });
             it('./src/inputs/govukInput.yaml', () => {
@@ -115,12 +118,14 @@ describe('./src/factories/metaDataFactory.js', () => {
                         "BaseFormElement": {
                         "properties": {
                             "api": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "name": {
-                                "type": "string"
-                            }
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
                             }
                         }
                         }
@@ -131,11 +136,11 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject).toHaveProperty('_extends', 'BaseFormElement');
                 expect(metaDataObject).toHaveProperty('_macro_file', 'govuk/components/input/macro.njk');
                 expect(metaDataObject).toHaveProperty('_import', 'govukInput');
-                expect(metaDataObject.GovukInput.properties.api).toHaveProperty('id');   // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukInput.properties.api.id).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukInput.properties.api).toHaveProperty('name'); // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukInput.properties.api.name).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukInput.properties.api).toHaveProperty('type'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('id');   // <<---- inherited from BaseFormElement
+                expect(metaDataObject.GovukInput.properties.api.properties.id).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('name'); // <<---- inherited from BaseFormElement
+                expect(metaDataObject.GovukInput.properties.api.properties.name).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('type'); // <<---- defined on the metaDataObject
                 expect(metaDataObject.GovukInput.properties.api.properties.type).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('inputmode');
                 expect(metaDataObject.GovukInput.properties.api.properties.inputmode).toHaveProperty('type', 'string'); // <<---- defined on the metaDataObject
@@ -186,12 +191,14 @@ describe('./src/factories/metaDataFactory.js', () => {
                         "BaseFormElement": {
                         "properties": {
                             "api": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "name": {
-                                "type": "string"
-                            }
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
                             }
                         }
                         }
@@ -202,76 +209,76 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject).toHaveProperty('_extends', 'BaseFormElement');
                 expect(metaDataObject).toHaveProperty('_macro_file', 'govuk/components/checkboxes/macro.njk');
                 expect(metaDataObject).toHaveProperty('_import', 'govukCheckboxes');
-                expect(metaDataObject.GovukCheckboxes.properties.api).toHaveProperty('id');   // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukCheckboxes.properties.api.id).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api).toHaveProperty('name'); // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukCheckboxes.properties.api.name).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api).toHaveProperty('describedBy'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukCheckboxes.properties.api.describedBy).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api).toHaveProperty('fieldset'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukCheckboxes.properties.api.fieldset).toHaveProperty('type', 'object');
-                expect(metaDataObject.GovukCheckboxes.properties.api.fieldset).toHaveProperty('extends', 'govukFieldset');
-                expect(metaDataObject.GovukCheckboxes.properties.api).toHaveProperty('hint'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukCheckboxes.properties.api.hint).toHaveProperty('type', 'object');
-                expect(metaDataObject.GovukCheckboxes.properties.api.hint).toHaveProperty('extends', 'Hint');
-                expect(metaDataObject.GovukCheckboxes.properties.api).toHaveProperty('errorMessage'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukCheckboxes.properties.api.errorMessage).toHaveProperty('type', 'object');
-                expect(metaDataObject.GovukCheckboxes.properties.api.errorMessage).toHaveProperty('extends', 'GovukErrorMessage');
-                expect(metaDataObject.GovukCheckboxes.properties.api).toHaveProperty('formGroup'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukCheckboxes.properties.api.formGroup).toHaveProperty('type', 'object');
-                expect(metaDataObject.GovukCheckboxes.properties.api).toHaveProperty('idPrefix'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukCheckboxes.properties.api.idPrefix).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api).toHaveProperty('items'); // <<---- defined on the metaDataObject
-                expect(metaDataObject.GovukCheckboxes.properties.api.items).toHaveProperty('type', 'array');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items).toHaveProperty('item');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item).toHaveProperty('type', 'object');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item).toHaveProperty('properties');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties).toHaveProperty('text');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.text).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties).toHaveProperty('html');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.html).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties).toHaveProperty('id');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.id).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties).toHaveProperty('name');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.name).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties).toHaveProperty('value');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.value).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties).toHaveProperty('label');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label).toHaveProperty('type', 'object');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label).toHaveProperty('properties');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties).toHaveProperty('text');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties.text).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties).toHaveProperty('html');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties.html).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties).toHaveProperty('for');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties.for).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties).toHaveProperty('isPageHeading');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties.isPageHeading).toHaveProperty('type', 'boolean');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties).toHaveProperty('classes');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties.classes).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties).toHaveProperty('attributes');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties.attributes).toHaveProperty('type', 'object');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties.attributes).toHaveProperty('patternProperties');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.label.properties.attributes.patternProperties['^.*$']).toHaveProperty("type", "string");
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties).toHaveProperty('hint');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.hint).toHaveProperty('type', 'object');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.hint).toHaveProperty('extends', 'Hint');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties).toHaveProperty('divider');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.divider).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties).toHaveProperty('checked');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.checked).toHaveProperty('type', 'boolean');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties).toHaveProperty('conditional');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.conditional).toHaveProperty('type', 'object');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.conditional).toHaveProperty('properties');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.conditional.properties).toHaveProperty('html');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.conditional.properties.html).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties).toHaveProperty('behaviour');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.behaviour).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties).toHaveProperty('disabled');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.disabled).toHaveProperty('type', 'boolean');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties).toHaveProperty('attributes');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.attributes).toHaveProperty('patternProperties');
-                expect(metaDataObject.GovukCheckboxes.properties.api.items.item.properties.attributes.patternProperties['^.*$']).toHaveProperty("type", "string");
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties).toHaveProperty('id');   // <<---- inherited from BaseFormElement
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.id).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties).toHaveProperty('name'); // <<---- inherited from BaseFormElement
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.name).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties).toHaveProperty('describedBy'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.describedBy).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties).toHaveProperty('fieldset'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.fieldset).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.fieldset).toHaveProperty('extends', 'govukFieldset');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties).toHaveProperty('hint'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.hint).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.hint).toHaveProperty('extends', 'Hint');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties).toHaveProperty('errorMessage'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.errorMessage).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.errorMessage).toHaveProperty('extends', 'GovukErrorMessage');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties).toHaveProperty('formGroup'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.formGroup).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties).toHaveProperty('idPrefix'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.idPrefix).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties).toHaveProperty('items'); // <<---- defined on the metaDataObject
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items).toHaveProperty('type', 'array');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items).toHaveProperty('item');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item).toHaveProperty('properties');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties).toHaveProperty('text');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.text).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties).toHaveProperty('html');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.html).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties).toHaveProperty('id');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.id).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties).toHaveProperty('name');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.name).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties).toHaveProperty('value');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.value).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties).toHaveProperty('label');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label).toHaveProperty('properties');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties).toHaveProperty('text');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties.text).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties).toHaveProperty('html');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties.html).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties).toHaveProperty('for');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties.for).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties).toHaveProperty('isPageHeading');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties.isPageHeading).toHaveProperty('type', 'boolean');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties).toHaveProperty('classes');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties.classes).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties).toHaveProperty('attributes');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties.attributes).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties.attributes).toHaveProperty('patternProperties');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.label.properties.attributes.patternProperties['^.*$']).toHaveProperty("type", "string");
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties).toHaveProperty('hint');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.hint).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.hint).toHaveProperty('extends', 'Hint');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties).toHaveProperty('divider');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.divider).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties).toHaveProperty('checked');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.checked).toHaveProperty('type', 'boolean');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties).toHaveProperty('conditional');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.conditional).toHaveProperty('type', 'object');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.conditional).toHaveProperty('properties');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.conditional.properties).toHaveProperty('html');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.conditional.properties.html).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties).toHaveProperty('behaviour');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.behaviour).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties).toHaveProperty('disabled');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.disabled).toHaveProperty('type', 'boolean');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties).toHaveProperty('attributes');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.attributes).toHaveProperty('patternProperties');
+                expect(metaDataObject.GovukCheckboxes.properties.api.properties.items.item.properties.attributes.patternProperties['^.*$']).toHaveProperty("type", "string");
                 expect(metaDataObject.GovukCheckboxes).toHaveProperty('additionalProperties', false);
             });
             it('./src/inputs/govukSelect.yaml', () => {
@@ -285,12 +292,14 @@ describe('./src/factories/metaDataFactory.js', () => {
                         "BaseFormElement": {
                         "properties": {
                             "api": {
-                            "id": {
-                                "type": "string"
-                            },
-                            "name": {
-                                "type": "string"
-                            }
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
                             }
                         }
                         }
@@ -301,39 +310,39 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject).toHaveProperty('_extends', 'BaseFormElement');
                 expect(metaDataObject).toHaveProperty('_macro_file', 'govuk/components/select/macro.njk');
                 expect(metaDataObject).toHaveProperty('_import', 'govukSelect');
-                expect(metaDataObject.GovukSelect.properties.api).toHaveProperty('id');   // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukSelect.properties.api.id).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukSelect.properties.api).toHaveProperty('name'); // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukSelect.properties.api.name).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukSelect.properties.api).toHaveProperty('label');
-                expect(metaDataObject.GovukSelect.properties.api.label).toHaveProperty('text');
-                expect(metaDataObject.GovukSelect.properties.api.label.text).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukSelect.properties.api.label.text).toHaveProperty('default', 'What is the name of the event?');
-                expect(metaDataObject.GovukSelect.properties.api).toHaveProperty('hint');
-                expect(metaDataObject.GovukSelect.properties.api.hint).toHaveProperty('text');
-                expect(metaDataObject.GovukSelect.properties.api.hint.text).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukSelect.properties.api).toHaveProperty('items');
-                expect(metaDataObject.GovukSelect.properties.api.items).toHaveProperty('item');
-                expect(metaDataObject.GovukSelect.properties.api.items).toHaveProperty('type', 'array');
-                expect(metaDataObject.GovukSelect.properties.api.items).toHaveProperty('item');
-                expect(metaDataObject.GovukSelect.properties.api.items.item).toHaveProperty('value');
-                expect(metaDataObject.GovukSelect.properties.api.items.item.value).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukSelect.properties.api.items.item).toHaveProperty('text');
-                expect(metaDataObject.GovukSelect.properties.api.items.item.text).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukSelect.properties.api.items.item).toHaveProperty('selected');
-                expect(metaDataObject.GovukSelect.properties.api.items.item.selected).toHaveProperty('type', 'boolean');
-                expect(metaDataObject.GovukSelect.properties.api.items).toHaveProperty('datasource');
-                expect(metaDataObject.GovukSelect.properties.api.items.datasource).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukSelect.properties.api.items.datasource).toHaveProperty('enum');
-                expect(metaDataObject.GovukSelect.properties.api.items.datasource.enum[0]).toEqual('rest');
-                expect(metaDataObject.GovukSelect.properties.api.items.datasource.enum[1]).toEqual('template');
-                expect(metaDataObject.GovukSelect.properties.api.items).toHaveProperty('url');
-                expect(metaDataObject.GovukSelect.properties.api.items.url).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukSelect.properties.api.items).toHaveProperty('method');
-                expect(metaDataObject.GovukSelect.properties.api.items.method).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukSelect.properties.api.items.method).toHaveProperty('default', 'GET');
-                expect(metaDataObject.GovukSelect.properties.api.items).toHaveProperty('jsonPath');
-                expect(metaDataObject.GovukSelect.properties.api.items.jsonPath).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukSelect.properties.api.properties).toHaveProperty('id');   // <<---- inherited from BaseFormElement
+                expect(metaDataObject.GovukSelect.properties.api.properties.id).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukSelect.properties.api.properties).toHaveProperty('name'); // <<---- inherited from BaseFormElement
+                expect(metaDataObject.GovukSelect.properties.api.properties.name).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukSelect.properties.api.properties).toHaveProperty('label');
+                expect(metaDataObject.GovukSelect.properties.api.properties.label).toHaveProperty('text');
+                expect(metaDataObject.GovukSelect.properties.api.properties.label.text).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukSelect.properties.api.properties.label.text).toHaveProperty('default', 'What is the name of the event?');
+                expect(metaDataObject.GovukSelect.properties.api.properties).toHaveProperty('hint');
+                expect(metaDataObject.GovukSelect.properties.api.properties.hint).toHaveProperty('text');
+                expect(metaDataObject.GovukSelect.properties.api.properties.hint.text).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukSelect.properties.api.properties).toHaveProperty('items');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items).toHaveProperty('item');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items).toHaveProperty('type', 'array');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items).toHaveProperty('item');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.item).toHaveProperty('value');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.item.value).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.item).toHaveProperty('text');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.item.text).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.item).toHaveProperty('selected');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.item.selected).toHaveProperty('type', 'boolean');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items).toHaveProperty('datasource');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.datasource).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.datasource).toHaveProperty('enum');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.datasource.enum[0]).toEqual('rest');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.datasource.enum[1]).toEqual('template');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items).toHaveProperty('url');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.url).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items).toHaveProperty('method');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.method).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.method).toHaveProperty('default', 'GET');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items).toHaveProperty('jsonPath');
+                expect(metaDataObject.GovukSelect.properties.api.properties.items.jsonPath).toHaveProperty('type', 'string');
             });
             it('./src/meta/content/govukHeader.yaml', () => {
                 const metaDataFile = '../meta/content/govukHeader.yaml';

@@ -10,7 +10,7 @@ describe('./src/linker/templateLinker.js', () => {
         const pageId = '8b148a5d-d37e-414a-a71b-08017681b0d0';
         const template = Services.templateService.getPartById(pageId, 'HAS');
         const templateLinker = new TemplateLinker();
-        templateLinker.setTemplate(template);
+        templateLinker.setTemplate(template.template);
         templateLinker.link();
     });
 });

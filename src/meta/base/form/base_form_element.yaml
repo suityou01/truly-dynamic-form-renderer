@@ -5,7 +5,9 @@ properties:
     type: object
     properties:
       api:
-        id: 
-          type: string
-        name:
-          type: string
+        type: object
+        properties:
+          id: 
+            type: string
+          name:
+            type: string

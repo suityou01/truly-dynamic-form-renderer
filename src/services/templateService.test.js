@@ -40,6 +40,10 @@ describe('./src/servics/templateService.js', () => {
         const yaml = Services.yamlFileLoaderService.loadAll(documents)[2];
         const template = Factories.templateFactory.setRawObject(yaml).build();
         const parent = Services.templateService.getParent(template);
+        expect(parent).toBeTruthy();
+        expect(parent._templateObjectName).toEqual('HASPage');
         const grandParent = Services.templateService.getParent(parent);
+        expect(grandParent).toBeTruthy();
+        expect(grandParent.meta._name).toEqual('Page');
     })
 });

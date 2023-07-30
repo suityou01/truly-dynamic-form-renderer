@@ -1,54 +1,56 @@
+const TemplateType = require("../types/templateType");
+const MetaData = require("../types/metaType");
 class TemplateLinker {
     _template;
     setTemplate(template){
         this._template = template;
     }
-    getTemplateObjectName(){
-        return this._template.template._templateObjectName;
-    }
-    getParent(templateObjectName){
-        if(this.isTopLevelTemplate()){
+    getIneritanceChain(){
+        const inheritanceChain = [];
+        let link = this._template;
+        inheritanceChain.push(link);
 
-        } else {
-            const content = this._template.template._content;
-            const extend = Object.values(content)[0].extends;
-            return Services.metaDataService.getMetaData(extend);
+        while(link.extends && link.extends!=''){
+            link = Services.templateService.getParent(link);
+            inheritanceChain.push(link);
         }
+        return inheritanceChain.reverse();
     }
-    getParentMetaData(parent){
-        const extend = parent._extends;
-        const metaData = Services.metaDataService.getMetaData(extend);
-        return metaData;
+    getMetaProperties(metaData){
+        const metaName = metaData._name;
+        return metaData[metaName].properties;
     }
-    getParentProperties(parent){
-        const name = parent.meta._name;
-        const metaClass = parent.meta[name];
-        return metaClass.properties;
-    }
-    getExtendableProperties(properties){
-        const extendableProperties = [];
-        for(let k in properties){
-            if(properties[k].hasOwnProperty('extends')){
-                extendableProperties.push(k);
+    linkMetaData(parent, child){
+        const linkedMetaData = {
+            ...parent,
+            ...{
+                _metaData: this.getMetaProperties(child)
             }
         }
-        return extendableProperties;
+        return linkedMetaData;
     }
-    getPropertyValue(propertyName, templateObjectName){
-        return this.getContent(templateObjectName)[propertyName];
+    linkTemplate(parent, child){
+        const linkedTemplate = {
+            ...parent,
+            ...child
+        }
+        return linkedTemplate
     }
-    getContent(templateObjectName){
-        return this._template.template._content.Template[templateObjectName];
+    linkInheritanceChain(inheritanceChain){
+        let linkedTemplate = new TemplateType();
+        linkedTemplate = inheritanceChain.reduce((parent, child) => {
+            if(child instanceof MetaData){
+                return this.linkMetaData(parent, child);
+            }
+            return this.linkTemplate(parent, child);
+        }, linkedTemplate);
+        return linkedTemplate;
     }
     link(){
-
-        const templateObjectName = this.getTemplateObjectName();
-        const parent = this.getParent(templateObjectName);
-        const properties = this.getParentProperties(parent);
-        const extendableProperties = this.getExtendableProperties(properties.api.properties);
-        const value = this.getPropertyValue('header', templateObjectName);
-        const content = this.getContent(templateObjectName);
-
+        const inheritanceChain = this.getIneritanceChain();
+        const linkedTemplate = this.linkInheritanceChain(inheritanceChain);
+        console.log(inheritanceChain);
+        console.log(linkedTemplate);
     }
 }
 

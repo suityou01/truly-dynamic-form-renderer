@@ -5,10 +5,12 @@ properties:
     type: object
     properties:
       api:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        url:
-          type: string
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+          name:
+            type: string
+          url:
+            type: string

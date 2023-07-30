@@ -23,13 +23,18 @@ class MetaDataFactory {
         Object.defineProperty(metaData, name, {
             value: {
                 properties: {
-                    api: {}
+                    api: {
+                        properties: {}
+                    }
                 }
             },
             writable: true,
             enumerable: true
         });
-        Object.assign(metaData[name].properties.api, parentMetaData.meta[_extends].properties.api);
+        metaData[name].properties.api.properties = {
+            ...metaData[name].properties.api.properties,
+            ...parentMetaData.meta[_extends].properties.api.properties
+        }
     }
     build(){
         let metaData = new MetaData();
@@ -44,16 +49,18 @@ class MetaDataFactory {
             metaData[name] = {};
             Object.assign(metaData[name], {
                 properties: {
-                    api: {}
+                    api: {
+                        properties: {
+
+                        }
+                    }
                 }
             });
         }
-        
-        metaData[name].properties.api = {
-            ...metaData[name].properties.api,
-            ...value.properties.api
-        }
-        
+        metaData[name].properties.api.properties = {
+            ...metaData[name].properties.api.properties,
+            ...value.properties.api.properties
+        }    
         metaData._name = name;
         if(value.properties.hasOwnProperty('macro_file')){
             metaData._macro_file = value.properties.macro_file.const;

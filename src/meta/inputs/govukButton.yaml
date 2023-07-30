@@ -14,27 +14,32 @@ properties:
         type: string
         const: govukButton
       api:
-        element:
-          type: string
-        text: 
-          type: string
-          default: Save and continue
-        html:
-          type: string
-        type:
-          type: string
-        value:
-          type: string
-        disabled:
-          type: boolean
-        href:
-          type: string
-        classes:
-          type: string
-        attributes:
-          type: ['object', 'any']
-        preventDoubleClick:
-          type: boolean
-        isStartButton:
-          type: boolean
+        type: object
+        properties:
+          element:
+            type: string
+          text: 
+            type: string
+            default: Save and continue
+          html:
+            type: string
+          type:
+            type: string
+          value:
+            type: string
+          disabled:
+            type: boolean
+          href:
+            type: string
+          classes:
+            type: string
+          attributes:
+            type: object
+            patternProperties:
+              "^.*$":
+                type: string
+          preventDoubleClick:
+            type: boolean
+          isStartButton:
+            type: boolean
     additionalProperties: false

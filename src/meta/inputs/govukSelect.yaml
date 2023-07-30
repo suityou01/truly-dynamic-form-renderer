@@ -14,32 +14,34 @@ properties:
         type: string
         const: govukSelect
       api:
-        label:
-          text: 
-            type: string
-            default: What is the name of the event?
-        hint:
-          text:
-            type: string
-        items:
-          type: array
-          item:
-            value: 
-              type: string
+        type: object
+        properties:
+          label:
             text: 
               type: string
-            selected:
-              type: boolean
-          datasource:
-            type: string
-            enum:
-              - rest
-              - template
-          url:
-            type: string
-          method: 
-            type: string
-            default: GET
-          jsonPath:
-            type: string
+              default: What is the name of the event?
+          hint:
+            text:
+              type: string
+          items:
+            type: array
+            item:
+              value: 
+                type: string
+              text: 
+                type: string
+              selected:
+                type: boolean
+            datasource:
+              type: string
+              enum:
+                - rest
+                - template
+            url:
+              type: string
+            method: 
+              type: string
+              default: GET
+            jsonPath:
+              type: string
 

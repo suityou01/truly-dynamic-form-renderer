@@ -12,11 +12,10 @@ class TemplateService {
     }
     getParent(template){
         const parentName = template.extends;
-        console.log(parentName);
         let parent = Services.templateService.getTemplateByTemplateObjectName(parentName);
         if(!parent){
             parent = Services.metaDataService.getMetaData(parentName);
-            return parent;
+            return parent.meta;
         }
         return parent.template;
     }
