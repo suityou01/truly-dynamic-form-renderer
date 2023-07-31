@@ -1,0 +1,16 @@
+$id: '/abstractions/forms/accessibleformelement'
+type: object
+properties:
+  AccessibleFormElement:
+    type: object
+    properties:
+      extends:
+        type: string,
+        const: BaseFormElement
+      api:
+        type: object
+        properties:
+          describedBy:
+            type: text
+        required:
+          - "describedBy"

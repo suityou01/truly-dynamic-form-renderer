@@ -1,27 +1,30 @@
-const PartLinker = require("./partLinker");
+
 const TemplateLinker = require("./templateLinker");
+const MetaDataLinker = require("./metaDataLinker");
 class Linker {
     _templateLinker;
-    _partLinker;
-    _template;
+    _metaDataLinker;
+    _linkableObject;
     constructor(){
         this._templateLinker = new TemplateLinker();
-        this._partLinker = new PartLinker(this._templateLinker);
+        this._metaDataLinker = new MetaDataLinker();
     }
-    setTemplate(template){
-        this._template = template;
+    setLinkableObject(linkableObject){
+        this._linkableObject = linkableObject;
+    }
+    isTemplate(){
+        return false;
     }
     isTopLevelTemplate(){
         return this._template.hasOwnProperty('Template');
     }
     link(){
-        if(this.isTopLevelTemplate()){
-            this._templateLinker.setTemplate(this._template);
+        if(this.isTemplate()){
+            this._templateLinker.setTemplate(this._linkableObject);
             return this._templateLinker.link();
-        } else {
-            this._partLinker.setTemplate(this._template);
-            return this._partLinker.link();
         }
+        this._metaDataLinker.setMetaData(this._linkableObject);
+        return this._metaDataLinker.link();
     }
 }
 

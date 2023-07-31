@@ -13,4 +13,8 @@ describe('./src/linker/templateLinker.js', () => {
         templateLinker.setTemplate(template.template);
         templateLinker.link();
     });
+    it('should link a Metadata object with its parent', () => {
+        const metadata = Services.metaDataService.getMetaData('AccessibleFormElement');
+        console.log(metadata);
+    })
 });

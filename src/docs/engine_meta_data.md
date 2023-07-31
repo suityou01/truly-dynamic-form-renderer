@@ -90,50 +90,52 @@ Once ingested the resulting object created by the factory looks like this
     "GovukButton": {
         "properties": {
             "api": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "element": {
-                    "type": "string"
-                },
-                "text": {
-                    "type": "string",
-                    "default": "Save and continue"
-                },
-                "html": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                },
-                "disabled": {
-                    "type": "boolean"
-                },
-                "href": {
-                    "type": "string"
-                },
-                "classes": {
-                    "type": "string"
-                },
-                "attributes": {
-                    "type": "object",
-                    "patternProperties": {
-                        "^.*$": {
-                            "type": "string"
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "element": {
+                        "type": "string"
+                    },
+                    "text": {
+                        "type": "string",
+                        "default": "Save and continue"
+                    },
+                    "html": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    },
+                    "disabled": {
+                        "type": "boolean"
+                    },
+                    "href": {
+                        "type": "string"
+                    },
+                    "classes": {
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "patternProperties": {
+                            "^.*$": {
+                                "type": "string"
+                            }
                         }
+                    },
+                    "preventDoubleClick": {
+                        "type": "boolean"
+                    },
+                    "isStartButton": {
+                        "type": "boolean"
                     }
-                },
-                "preventDoubleClick": {
-                    "type": "boolean"
-                },
-                "isStartButton": {
-                    "type": "boolean"
                 }
             }
         },
