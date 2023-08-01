@@ -13,7 +13,7 @@ class Linker {
         this._linkableObject = linkableObject;
     }
     isTemplate(){
-        return false;
+        return this._linkableObject.hasOwnProperty('template');
     }
     isTopLevelTemplate(){
         return this._template.hasOwnProperty('Template');

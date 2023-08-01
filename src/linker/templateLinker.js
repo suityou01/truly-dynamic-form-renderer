@@ -49,8 +49,7 @@ class TemplateLinker {
     link(){
         const inheritanceChain = this.getIneritanceChain();
         const linkedTemplate = this.linkInheritanceChain(inheritanceChain);
-        console.log(inheritanceChain);
-        console.log(linkedTemplate);
+        return linkedTemplate;
     }
 }
 

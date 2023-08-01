@@ -11,12 +11,14 @@ describe('./src/linker/templateLinker.js', () => {
         const template = Services.templateService.getPartById(pageId, 'HAS');
         const linker = new Linker();
         linker.setLinkableObject(template);
-        linker.link();
+        const linked = linker.link();
+        console.log(linked);
     });
     it('should link a metadata object', () => {
         const metaData = Services.metaDataService.getMetaData('AccessibleFormElement');
         const linker = new Linker();
         linker.setLinkableObject(metaData);
-        linker.link();
+        const linked = linker.link();
+        console.log(JSON.stringify(linked, null, 2));
     })
 });
