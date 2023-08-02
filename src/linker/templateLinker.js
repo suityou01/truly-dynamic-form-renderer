@@ -1,7 +1,12 @@
 const TemplateType = require("../types/templateType");
 const MetaData = require("../types/metaType");
+const { mergeObjects } = require('../lib/object/object');
 class TemplateLinker {
     _template;
+    _metaDataLinker;
+    constructor(metaDataLinker){
+        this._metaDataLinker = metaDataLinker;
+    }
     setTemplate(template){
         this._template = template;
     }
@@ -16,34 +21,19 @@ class TemplateLinker {
         }
         return inheritanceChain.reverse();
     }
-    getMetaProperties(metaData){
-        const metaName = metaData._name;
-        return metaData[metaName].properties;
-    }
-    linkMetaData(parent, child){
-        const linkedMetaData = {
-            ...parent,
-            ...{
-                _metaData: this.getMetaProperties(child)
-            }
-        }
-        return linkedMetaData;
-    }
     linkTemplate(parent, child){
-        const linkedTemplate = {
-            ...parent,
-            ...child
-        }
+        const linkedTemplate = mergeObjects(parent, child);
         return linkedTemplate
     }
     linkInheritanceChain(inheritanceChain){
         let linkedTemplate = new TemplateType();
         linkedTemplate = inheritanceChain.reduce((parent, child) => {
-            if(child instanceof MetaData){
-                return this.linkMetaData(parent, child);
+            if(parent instanceof MetaData) {
+                let linkedMetaData = new MetaData();
+                return this._metaDataLinker.linkMetaData(linkedMetaData, parent, child);
             }
             return this.linkTemplate(parent, child);
-        }, linkedTemplate);
+        });
         return linkedTemplate;
     }
     link(){

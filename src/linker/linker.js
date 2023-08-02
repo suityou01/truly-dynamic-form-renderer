@@ -6,8 +6,8 @@ class Linker {
     _metaDataLinker;
     _linkableObject;
     constructor(){
-        this._templateLinker = new TemplateLinker();
         this._metaDataLinker = new MetaDataLinker();
+        this._templateLinker = new TemplateLinker(this._metaDataLinker);
     }
     setLinkableObject(linkableObject){
         this._linkableObject = linkableObject;

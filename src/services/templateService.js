@@ -15,7 +15,7 @@ class TemplateService {
         let parent = Services.templateService.getTemplateByTemplateObjectName(parentName);
         if(!parent){
             parent = Services.metaDataService.getMetaData(parentName);
-            return parent.meta;
+            return parent;
         }
         return parent.template;
     }
