@@ -9,6 +9,7 @@ class TemplateLinker {
     }
     setTemplate(template){
         this._template = template;
+        return this;
     }
     getIneritanceChain(){
         const inheritanceChain = [];

@@ -3,9 +3,9 @@ class MetaDataService {
     constructor(){
 
     }
-    loadAllMetaData() {
+    loadAllMetaData(path = "../meta/") {
 
-        const metaDirectories = Services.fileLoaderService.listDirectories('../meta/');
+        const metaDirectories = Services.fileLoaderService.listDirectories(path);
         metaDirectories.forEach(dir => {
             const files = Services.fileLoaderService.listFiles(dir);
             files.forEach(file => {

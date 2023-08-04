@@ -11,6 +11,7 @@ class Linker {
     }
     setLinkableObject(linkableObject){
         this._linkableObject = linkableObject;
+        return this;
     }
     isTemplate(){
         return this._linkableObject.hasOwnProperty('template');
@@ -20,7 +21,7 @@ class Linker {
     }
     link(){
         if(this.isTemplate()){
-            this._templateLinker.setTemplate(this._linkableObject);
+            this._templateLinker.setTemplate(this._linkableObject.template);
             return this._templateLinker.link();
         }
         this._metaDataLinker.setMetaData(this._linkableObject);

@@ -1,8 +1,0 @@
-@startuml
-:TemplateReceived;
-:ParseTemplate;
-:LookupMetaData;
-:Compile;
-note right: API Lookups happen here if specified
-:Render;
-@enduml

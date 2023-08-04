@@ -113,6 +113,18 @@ class TemplateService {
     listTemplates(){
         return this._templates;
     }
+    getAllTemplates(){
+        return this._templates;
+    }
+    getInvalidTemplates(){
+        return this._invalidTemplates;
+    }
+    getOrphanTemplates(){
+        return this._orphans;
+    }
+    getOrphanTemplateById(id){
+        return this._orphans.filter(orphan => orphan.template.id === id)[0];
+    }
 }
 
 module.exports = TemplateService;

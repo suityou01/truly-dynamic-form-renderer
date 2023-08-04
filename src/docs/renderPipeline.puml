@@ -1,0 +1,16 @@
+@startuml
+Client -> ExpressJS: RenderRequest
+ExpressJS -> Engine
+Engine -> Pipeline
+group Render Pipeline
+    Pipeline -> TemplateService: Template
+    TemplateService -> MetadataService: Metadata
+    MetadataService -> Linker: Inheritance Chain
+    Linker -> Compiler: Linked Template
+    Compiler -> Renderer: Compiled Template
+    Renderer -> Pipeline: (Nunjucks template)
+end
+Pipeline -> Engine: (Nunjucks template)
+Engine -> ExpressJS: (Nunjucks template)
+ExpressJS -> Client: (Nunjucks template)
+@enduml

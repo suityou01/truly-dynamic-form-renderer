@@ -52,7 +52,7 @@ properties:
         attributes:
             type: object
             patternProperties:
-                "^.*$":
+                "\S\w*":
                 type: string
         preventDoubleClick:
           type: boolean
@@ -125,7 +125,7 @@ Once ingested the resulting object created by the factory looks like this
                     "attributes": {
                         "type": "object",
                         "patternProperties": {
-                            "^.*$": {
+                            "\S\w*": {
                                 "type": "string"
                             }
                         }
@@ -143,4 +143,8 @@ Once ingested the resulting object created by the factory looks like this
     }
 }
 ```
+
+Notice how the properties "id" and "name" are inherited from BaseFormElement.
+
+Only single inheritance is supported but inheritance can span multiple levels forming an inheritance hierarchy called a "chain".
 

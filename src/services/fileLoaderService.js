@@ -10,10 +10,16 @@ class FileLoaderService {
     }
     load(relativePath){
         const absPath = this.#createAbsolutePath(relativePath);
-        if(this.#checkFileExists(absPath)){
-            return fs.readFileSync(absPath, 'utf-8');
+        try {
+            if(this.#checkFileExists(absPath)){
+                return fs.readFileSync(absPath, 'utf-8');
+            }
         }
-        throw new Error(`Error reading file. Please check that the path exits and you have read permissions: ${absPath}`);
+        catch (e) {
+            console.log(e);
+            throw new Error(`Error reading file. Please check that the path exits and you have read permissions: ${absPath}`);
+        }
+        
     }
     listDirectories(relativePath){
         let dirs = [];

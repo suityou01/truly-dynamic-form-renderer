@@ -1,0 +1,5 @@
+AButton:
+  id: 99708c4e-c109-430a-bcb1-729766cc72e6
+  extends: GovukButton
+  api:
+    text: Do the thing

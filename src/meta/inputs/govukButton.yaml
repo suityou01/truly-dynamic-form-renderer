@@ -36,7 +36,7 @@ properties:
           attributes:
             type: object
             patternProperties:
-              "^.*$":
+              "^\\w$":
                 type: string
           preventDoubleClick:
             type: boolean
