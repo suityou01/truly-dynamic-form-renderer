@@ -1,0 +1,17 @@
+@startuml
+package "GDS Components" {
+  class TextComponent
+}
+
+package "Rendererer" {
+  abstract TextComponentMetadata
+  TextComponentMetadata <|-- TemplatePart 
+  class Template
+  Template *- TemplatePart
+  TextComponentMetadata .. TextComponent
+}
+
+class EmailComponent
+EmailComponent .. TextComponent
+
+@enduml

@@ -80,26 +80,11 @@ class TemplateService {
                 rawTemplateArray.forEach(rawTemplate => {
                     const templateObject = Factories.templateFactory.setRawObject(rawTemplate).build();
                     if(this.validateTemplate(templateObject)){
-                        if(this.isTopLevelTemplate(templateObject)){
-                            this._templates.push({
-                                file: file,
-                                template: templateObject
-                            });
-                        } else {
-                            const belongsToTemplate = this.getPartTemplate(templateObject);
-                            if(!belongsToTemplate){
-                                this._orphans.push({
-                                    file: file,
-                                    template: templateObject
-                                });                              
-                            } else {
-                                belongsToTemplate.template._parts.push({
-                                    file: file,
-                                    template: templateObject
-                                });
-                            }
-                        }
-                    } else{
+                        this._templates.push({
+                            file: file,
+                            template: templateObject
+                        });
+                    } else {
                         this._invalidTemplates.push({
                             file: file,
                             template: templateObject
@@ -109,6 +94,23 @@ class TemplateService {
             });    
         });
         
+    }
+    collateTemplateParts() {
+        this._templates.filter(t => t.template._part !='').forEach(part => {
+            const parentTemplate = this.getPartTemplate(part.template);
+            if(parentTemplate){
+                if(parentTemplate.template._parts.filter(p => p.template._id === part.template._id).length === 0){
+                    parentTemplate.template._parts.push(part);
+                } else {
+                    console.log("Failed to collate part");
+                    console.log(parentTemplate, part);
+                }
+            } else {
+                if(this._orphans.filter(orphan => orphan.template._id === part.template._id).length === 0){
+                    this._orphans.push(part);
+                }
+            }
+        });
     }
     listTemplates(){
         return this._templates;

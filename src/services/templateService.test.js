@@ -1,5 +1,6 @@
 require("../services");
 require("../factories");
+const fs = require("fs");
 
 const TemplateService = require("./templateService");
 
@@ -45,5 +46,19 @@ describe('./src/servics/templateService.js', () => {
         const grandParent = Services.templateService.getParent(parent);
         expect(grandParent).toBeTruthy();
         expect(grandParent.meta._name).toEqual('Page');
-    })
+    });
+    it('should load all templates', () => {
+        const t = new TemplateService();
+        t.loadAllTemplates();
+        expect(t._invalidTemplates.length).toEqual(0);
+        expect(t._orphans.length).toEqual(0);
+        expect(t._templates.length).toBeGreaterThan(0);
+    });
+    it('should collate template parts into top level templates', () => {
+        const t = new TemplateService();
+        t.loadAllTemplates();
+        t.collateTemplateParts();
+        const hasTemplate = t.getTemplateByTemplateObjectName('HAS');
+        expect(hasTemplate.template._parts.length).toBeGreaterThan(0);
+    });
 });

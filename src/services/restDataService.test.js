@@ -36,4 +36,6 @@ describe('./src/services/restDataService', () => {
         expect(result[1]).toEqual('iPhone 9');
         //.log(result);
     });
+
+    
 });

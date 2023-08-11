@@ -1,3 +1,4 @@
+const pipelineBuilder = require("../../builders/pipelineBuilder");
 const express = require('express');
 const router = express.Router();
 
@@ -11,6 +12,12 @@ router.get('/:name', (req, res) => {
     res.status(200);
     res.send(JSON.stringify(engine.getTemplateByTemplateObjectName(name), null, 2));
     return;
+});
+router.post('/:templateid/:sectionid/:pageid', async (req, res, next) => {
+    const { templateid, sectionid, pageid } = req.params;
+    await pipelineBuilder(req, res);
+    res.status(200);
+    res.end();
 });
 
 module.exports = router;

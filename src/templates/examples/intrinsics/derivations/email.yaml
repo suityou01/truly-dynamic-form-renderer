@@ -1,0 +1,8 @@
+Email:
+  id: a36b3b33-a94b-4c36-81ca-674cb6dc9565
+  extends: GovukInput
+  api:
+    inputmode: email
+    errorMessage: Enter an email address in the correct format, like name@example.com
+  validation:
+    - isEmail

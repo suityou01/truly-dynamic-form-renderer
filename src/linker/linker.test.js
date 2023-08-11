@@ -20,5 +20,5 @@ describe('./src/linker/templateLinker.js', () => {
         linker.setLinkableObject(metaData);
         const linked = linker.link();
         console.log(JSON.stringify(linked, null, 2));
-    })
+    });
 });

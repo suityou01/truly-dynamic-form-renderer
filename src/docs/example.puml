@@ -1,0 +1,43 @@
+@startuml
+
+package GDS_Design_System {
+    class TextComponent << gds component >>
+}
+
+package File_System {
+    entity Email << yaml >>
+    entity Code << yaml >>
+    entity PostCode << yaml >>
+}
+
+package Ingested_Metaclasses {
+    class EmailComponent << tdfr Metaclass >>
+    class CodeComponent << tdfr Metaclass >>
+    class PostCodeComponent << tdfr Metaclass >>
+    class AddressLine << tdfr Metaclass >>
+}
+
+Email .. EmailComponent
+Code .. CodeComponent
+PostCode .. PostCodeComponent
+
+package TDFR_Abstractions {
+    abstract Metadata << tdfr abstract >>
+    abstract TemplatePart <<tdfr abstract>>
+    abstract Template <<tdfr abstract>>
+}
+
+TextComponent <|.. EmailComponent
+TextComponent <|.. CodeComponent
+TextComponent <|.. PostCodeComponent
+
+Template <|-- TemplatePart
+
+package File_System_Templates {
+    entity HomeownerAppealService << yaml >>
+    entity AddressPart << yaml >>
+    HomeownerAppealService o-- AddressPart
+    AddressPart o-- AddressLine
+    AddressPart *-- PostCodeComponent
+}
+@enduml
