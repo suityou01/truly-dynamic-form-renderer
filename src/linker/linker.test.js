@@ -20,4 +20,13 @@ describe('./src/linker/templateLinker.js', () => {
         linker.setLinkableObject(metaData);
         const linked = linker.link();
     });
+    it('should link a template part', () => {
+        const templateId = 'ee9ec28b-df53-4de7-ac63-9495968ac984';
+        const partName = 'LPAEmail';
+        const part = Services.templateService.getPartByNameAndTemplateId(partName, templateId);
+        const linker = new Linker();
+        linker.setLinkableObject(part);
+        const linked = linker.link();
+        //console.log(linked);
+    });
 });

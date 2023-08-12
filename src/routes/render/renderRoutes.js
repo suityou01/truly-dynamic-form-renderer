@@ -14,7 +14,6 @@ router.get('/:name', (req, res) => {
     return;
 });
 router.post('/:templateid/:sectionid/:pageid', async (req, res, next) => {
-    const { templateid, sectionid, pageid } = req.params;
     await pipelineBuilder(req, res);
     res.status(200);
     res.end();

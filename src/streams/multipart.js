@@ -3,6 +3,9 @@ const { Transform } = require('node:stream');
 const { EOL } = require("os");
 
 class MultiPartStream extends Transform {
+    _templateId;
+    _sectionId;
+    _pageId;
     _boundary;
     _request;
     _chunks = [];
@@ -130,6 +133,9 @@ class MultiPartStream extends Transform {
 
     _final(callback){
         const finalOutput = {
+            templateId: this._templateId,
+            sectionId: this._sectionId,
+            pageId: this._pageId,
             fields: this._fields,
             files: this._files
         };

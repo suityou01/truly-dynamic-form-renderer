@@ -23,11 +23,16 @@ const getBoundary = (contentType) => {
 
 const buildPipeLine = (async (req, res) => {
     const contentType = getContentType(req);
+    const { templateid, sectionid, pageid } = req.params;
+    if(!Services.templateService.isValidTemplateId(templateid)) return;
     if(isMultiPart(contentType)){
         multiPartStream._boundary = getBoundary(contentType);
         multiPartStream._request = req;
+        multiPartStream._templateId = templateid;
+        multiPartStream._sectionId = sectionid;
+        multiPartStream._pageId = pageid;
         req
-        .pipe(process.stdout)
+        //.pipe(process.stdout)
         .pipe(multiPartStream)
         .pipe(virusScanStream)
         .pipe(compileStream)

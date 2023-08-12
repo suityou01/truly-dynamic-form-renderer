@@ -11,14 +11,29 @@ class TemplateLinker {
         this._template = template;
         return this;
     }
+    isTemplatePart(){
+        return this._template._part != '' && typeof this._template._part != 'undefined';
+    }
     getIneritanceChain(){
         const inheritanceChain = [];
-        let link = this._template;
+        let link;
+        if(this.isTemplatePart()){
+            const partName = this._template._part;
+            link = this._template._content[partName];
+        } else {
+            link = this._template;
+        }
         inheritanceChain.push(link);
-
-        while(link.extends && link.extends!=''){
-            link = Services.templateService.getParent(link);
-            inheritanceChain.push(link);
+        try {
+            while(link.extends && link.extends!=''){
+                link = Services.templateService.getParent(link);
+                inheritanceChain.push(link);
+            }
+        } catch(e) {
+            console.log(e);
+            console.log(link);
+            console.log(this._template);
+            throw new Error(e);
         }
         return inheritanceChain.reverse();
     }

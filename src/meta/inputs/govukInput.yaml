@@ -61,6 +61,6 @@ properties:
               attributes:
                 type: object
                 patternProperties:
-                  "^.*$":
+                  "^\\w$":
                     type: string
     additionalProperties: false              

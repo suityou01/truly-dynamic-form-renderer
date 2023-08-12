@@ -48,6 +48,15 @@ describe('./src/servics/templateService.js', () => {
         expect(grandParent).toBeTruthy();
         expect(grandParent.meta._name).toEqual('Page');
     });
+    it('should retrieve the parent of a template part', () => {
+        const templateId = 'ee9ec28b-df53-4de7-ac63-9495968ac984';
+        const partName = 'LPAEmail';
+        const part = Services.templateService.getPartByNameAndTemplateId(partName, templateId);
+        const content = part.template._content['LPAEmail'];
+        const parent = Services.templateService.getParent(content);
+        expect(parent).toBeTruthy();
+        expect(parent._id).toEqual('a36b3b33-a94b-4c36-81ca-674cb6dc9565');
+    });
     it('should load all templates', () => {
         const t = new TemplateService();
         t.loadAllTemplates();
