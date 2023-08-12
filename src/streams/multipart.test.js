@@ -1,4 +1,5 @@
 const MultiPartStream = require("./multipart");
+const { EOL } = require("os");
 
 const fixture = `----------------------------505849065582232366557729
 
@@ -66,7 +67,7 @@ describe('./src/streams/multipart.js', () => {
         expect(result).toBeTruthy();
         expect(result.type).toEqual('field');
         expect(result.name).toEqual('field2');
-        expect(multipartStream._fields).toEqual([ { name: 'field2', type: 'field' } ]);
+        expect(multipartStream._fields).toEqual([ { name: 'field2', type: 'field', value: '' } ]);
     });
     it('should match a form field file content disposition', () => {
         const line = `Content-Disposition: form-data; name="field3"; filename="uploadableFile.txt"`;
@@ -76,14 +77,15 @@ describe('./src/streams/multipart.js', () => {
         expect(result.type).toEqual('file');
         expect(result.name).toEqual('field3');
         expect(result.filename).toEqual('loadableFile.txt');
-        expect(multipartStream._files).toEqual([ { name: 'field3', type: 'file', filename: 'loadableFile.txt' } ]);
+        expect(multipartStream._files).toEqual([ { name: 'field3', type: 'file', filename: 'loadableFile.txt', content: "" } ]);
     });
     it('should ignore a single crlf if in fielddata state', () => {
-        const line = "\r\n";
+        const line = EOL;
         const multipartStream = new MultiPartStream();
         multipartStream._state = multipartStream._states.FIELDDATA;
         multipartStream.parseLine(line);
-        expect(multipartStream._state).toEqual(multipartStream._states.FIELDDATA);
+        expect(multipartStream._state).toEqual(multipartStream._states.EOL);
+        expect(multipartStream._previousState).toEqual(multipartStream._states.FIELDDATA);
     });
     it('should read a value and store it against the field when in fielddata state', () => {
         const line = "World";

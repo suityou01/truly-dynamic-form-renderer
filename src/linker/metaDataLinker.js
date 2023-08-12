@@ -40,7 +40,6 @@ class MetaDataLinker {
         return link.meta[metaName].properties;
     }
     linkMetaData(linkedMetaData ,parent, child){
-        console.log(parent);
         const parentKeyMap = recurseObjectProperties('', parent);
         const childKeyMap = recurseObjectProperties('', child);
         

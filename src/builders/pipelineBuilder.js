@@ -26,10 +26,11 @@ const buildPipeLine = (async (req, res) => {
     if(isMultiPart(contentType)){
         multiPartStream._boundary = getBoundary(contentType);
         multiPartStream._request = req;
-        req.pipe(multiPartStream)
+        req
+        .pipe(process.stdout)
+        .pipe(multiPartStream)
         .pipe(virusScanStream)
         .pipe(compileStream)
-        .pipe(process.stdout);
     }
 });
 

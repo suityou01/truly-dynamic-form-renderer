@@ -15,7 +15,6 @@ describe('./src/services/yamlFileLoaderService.js', () => {
             const testYamlFile = '../__tests__/fixtures/templates/has.yaml';
             const yaml = yamlFileLoaderService.loadAll(testYamlFile);
             expect(typeof yaml).toEqual('object');
-            console.log(yaml);
         }); 
     });
 });

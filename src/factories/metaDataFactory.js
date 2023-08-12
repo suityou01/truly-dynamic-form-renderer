@@ -10,34 +10,6 @@ class MetaDataFactory {
         this._raw = o;
         return this;
     }
-    /*
-    getParentMetaData(extend) {
-        return Services.metaDataService.getMetaData(extend);
-    }
-    getInheritedEntries(metaData) {
-        const name = Object.keys(this._raw.properties)[0];
-        const _extends = metaData._extends;
-        let parentMetaData = this.getParentMetaData(_extends);
-        if(parentMetaData.hasOwnProperty('file')){
-            delete parentMetaData.file;
-        }
-        Object.defineProperty(metaData, name, {
-            value: {
-                properties: {
-                    api: {
-                        properties: {}
-                    }
-                }
-            },
-            writable: true,
-            enumerable: true
-        });
-        metaData[name].properties.api.properties = {
-            ...metaData[name].properties.api.properties,
-            ...parentMetaData.meta[_extends].properties.api.properties
-        }
-    }
-    */
     build(){
         let metaData = new MetaData();
         const name = Object.keys(this._raw.properties)[0];
@@ -57,7 +29,7 @@ class MetaDataFactory {
 
         metaData[name].properties.api.properties = {
             ...metaData[name].properties.api,
-            ...value.properties.api
+            ...value.properties.api.properties
         }    
         metaData._name = name;
         if(value.properties.hasOwnProperty('extends')){

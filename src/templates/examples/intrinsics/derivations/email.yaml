@@ -3,6 +3,6 @@ Email:
   extends: GovukInput
   api:
     inputmode: email
-    errorMessage: Enter an email address in the correct format, like name@example.com
-  validation:
-    - isEmail
+    value:
+      pattern: "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+      x-errorMessage: Enter an email address in the correct format, like name@example.com

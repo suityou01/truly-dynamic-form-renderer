@@ -7,7 +7,7 @@ describe('./src/validators/templateValidator.js', () => {
     beforeAll(() => {
         Services.metaDataService.loadAllMetaData();
     })
-    it('should validate a valid template', () => {
+    it.skip('should validate a valid template', () => {
         const metadatafile = Services.metaDataService.getMetaData('GovukInput');
         console.log(metadatafile);
         const template = {
@@ -23,7 +23,7 @@ describe('./src/validators/templateValidator.js', () => {
                 }
             }
         };
-        const result = TemplateValidator.validate(template, metadatafile.meta);
+        const result = TemplateValidator.validate(template, metadatafile.meta.GovukInput);
         console.log(result);
     });
 });

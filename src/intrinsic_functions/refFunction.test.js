@@ -64,7 +64,7 @@ describe('./src/intrinsic_functions/refFunction.js', () => {
             30,
             'Key Holder'
         ];
-        const refFunction = new RefFunction(refExpression, state);
+        const refFunction = new RefFunction({ refExpression: refExpression, state: state });
         const result = refFunction.execute();
         expect(result).toEqual([
             1,  2,  3,  4,  5,  6,  7,  8,  9,
@@ -137,7 +137,7 @@ describe('./src/intrinsic_functions/refFunction.js', () => {
             30,
             'Key Holder'
         ];
-        const refFunction = new RefFunction(refExpression, state);
+        const refFunction = new RefFunction({ refExpression: refExpression, state: state });
         const result = refFunction.execute();
         expect(result).toEqual([
             true,  false,  false,  false,  false,  false,  false,  false,  false,

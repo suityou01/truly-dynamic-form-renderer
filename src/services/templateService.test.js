@@ -8,6 +8,7 @@ describe('./src/servics/templateService.js', () => {
     beforeAll(()=> {
         Services.metaDataService.loadAllMetaData();
         Services.templateService.loadAllTemplates();
+        Services.templateService.collateTemplateParts();
     })
     it('should retrieve a template by TemplateObjectName', ()=> {
         const template = Services.templateService.getTemplateByTemplateObjectName('HAS');
@@ -24,13 +25,13 @@ describe('./src/servics/templateService.js', () => {
         expect(template).toBeTruthy();
     });
     it('should retrieve a part by name', () => {
-        let partName = 'Section 1';
+        let partName = 'Section1';
         let templateObjectName = 'HAS';
         const templatePart = Services.templateService.getPartByName(partName, templateObjectName);
         expect(templatePart).toBeTruthy();
     });
     it('should retrieve a template from knowing the part', ()=> {
-        let partName = 'Section 1';
+        let partName = 'Section1';
         let templateObjectName = 'HAS';
         const templatePart = Services.templateService.getPartByName(partName, templateObjectName);
         const template = Services.templateService.getPartTemplate(templatePart.template);

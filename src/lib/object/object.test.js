@@ -111,6 +111,7 @@ describe('../lib/object', () => {
     it('should set a top level value on an object', () => {
         setValueOnObject(objectA, 'firstName', 'Charles');
         expect(objectA.firstName).toEqual('Charles');
+        setValueOnObject(objectA, 'firstName', 'Charlie');
     });
     it('should set a bottom level value on an object', () => {
         setValueOnObject(objectA, 'address.coordinates.os.eastings', 523858);
@@ -167,6 +168,5 @@ describe('../lib/object', () => {
     it('should merge two objects', () => {
         const merged = mergeObjects(objectA, objectB);
         expect(merged.firstName).toEqual(objectA.firstName);
-        console.log(merged);
     });
 });

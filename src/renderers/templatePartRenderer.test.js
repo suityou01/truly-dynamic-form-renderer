@@ -84,6 +84,5 @@ describe('./src/renderers/templatePartRenderer', () => {
     });
     it('should render a part', () => {
         const rendered = templatePartRenderer.render();
-        console.log(rendered);
     });
 });

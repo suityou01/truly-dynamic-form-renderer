@@ -13,7 +13,7 @@ describe('metadataService.js', () => {
         });
         it('should retrieve a meta data object by name', () => {
             const metaDataObject = Services.metaDataService.getMetaData('GovukInput');
-            console.log(metaDataObject);
+            expect(metaDataObject).toBeTruthy();
         });
     });
 });

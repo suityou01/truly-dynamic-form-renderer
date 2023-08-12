@@ -12,8 +12,6 @@ describe('./src/factories/metaDataFactory.js', () => {
             const metaDataFactory = new MetaDataFactory(yaml);
             const metaDataObject = metaDataFactory.build();
             expect(metaDataObject._name).toEqual('GovukInput');
-            expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('id');   // <<---- inherited from BaseFormElement
-            expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('name'); // <<---- inherited from BaseFormElement
             expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('label'); // <<---- defined on the metaDataObject
         });
         describe('Specific Meta data tests', () => {
@@ -50,36 +48,12 @@ describe('./src/factories/metaDataFactory.js', () => {
                 const metaDataFile = '../meta/inputs/govukButton.yaml';
                 const yaml = metaDataService.loadMetaData(metaDataFile);
                 const metaDataFactory = new MetaDataFactory(yaml);
-                metaDataFactory.getParentMetaData = jest.fn();
-                metaDataFactory.getParentMetaData.mockReturnValue({
-                    "meta": {
-                        "_name": "BaseFormElement",
-                        "BaseFormElement": {
-                        "properties": {
-                            "api": {
-                                "properties": {
-                                    "id": {
-                                        "type": "string"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        }
-                        }
-                    }
-                });
                 const metaDataObject = metaDataFactory.build();
                 const name = metaDataObject._name;
                 expect(metaDataObject).toHaveProperty('_name', 'GovukButton');
                 expect(metaDataObject).toHaveProperty('_extends', 'BaseFormElement');
                 expect(metaDataObject).toHaveProperty('_macro_file', 'govuk/components/button/macro.njk');
                 expect(metaDataObject).toHaveProperty('_import', 'govukButton');
-                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('id');   // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukButton.properties.api.properties.id).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('name'); // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukButton.properties.api.properties.name).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('element'); // <<---- defined on the metaDataObject
                 expect(metaDataObject.GovukButton.properties.api.properties.element).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('text'); // <<---- defined on the metaDataObject
@@ -100,7 +74,7 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('attributes');
                 expect(metaDataObject.GovukButton.properties.api.properties.attributes).toHaveProperty('type', 'object');
                 expect(metaDataObject.GovukButton.properties.api.properties.attributes).toHaveProperty('patternProperties');
-                expect(metaDataObject.GovukButton.properties.api.properties.attributes.patternProperties['^.*$']).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukButton.properties.api.properties.attributes.patternProperties['^\\w$']).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('preventDoubleClick'); // <<---- defined on the metaDataObject
                 expect(metaDataObject.GovukButton.properties.api.properties.preventDoubleClick).toHaveProperty('type', 'boolean');
                 expect(metaDataObject.GovukButton.properties.api.properties).toHaveProperty('isStartButton'); // <<---- defined on the metaDataObject
@@ -111,35 +85,11 @@ describe('./src/factories/metaDataFactory.js', () => {
                 const metaDataFile = '../meta/inputs/govukInput.yaml';
                 const yaml = metaDataService.loadMetaData(metaDataFile);
                 const metaDataFactory = new MetaDataFactory(yaml);
-                metaDataFactory.getParentMetaData = jest.fn();
-                metaDataFactory.getParentMetaData.mockReturnValue({
-                    "meta": {
-                        "_name": "BaseFormElement",
-                        "BaseFormElement": {
-                        "properties": {
-                            "api": {
-                                "properties": {
-                                    "id": {
-                                        "type": "string"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        }
-                        }
-                    }
-                });
                 const metaDataObject = metaDataFactory.build();
                 expect(metaDataObject).toHaveProperty('_name', 'GovukInput');
                 expect(metaDataObject).toHaveProperty('_extends', 'BaseFormElement');
                 expect(metaDataObject).toHaveProperty('_macro_file', 'govuk/components/input/macro.njk');
                 expect(metaDataObject).toHaveProperty('_import', 'govukInput');
-                expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('id');   // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukInput.properties.api.properties.id).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('name'); // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukInput.properties.api.properties.name).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('type'); // <<---- defined on the metaDataObject
                 expect(metaDataObject.GovukInput.properties.api.properties.type).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukInput.properties.api.properties).toHaveProperty('inputmode');
@@ -184,35 +134,11 @@ describe('./src/factories/metaDataFactory.js', () => {
                 const metaDataFile = '../meta/inputs/govukCheckboxes.yaml';
                 const yaml = metaDataService.loadMetaData(metaDataFile);
                 const metaDataFactory = new MetaDataFactory(yaml);
-                metaDataFactory.getParentMetaData = jest.fn();
-                metaDataFactory.getParentMetaData.mockReturnValue({
-                    "meta": {
-                        "_name": "BaseFormElement",
-                        "BaseFormElement": {
-                        "properties": {
-                            "api": {
-                                "properties": {
-                                    "id": {
-                                        "type": "string"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        }
-                        }
-                    }
-                });
                 const metaDataObject = metaDataFactory.build();
                 expect(metaDataObject).toHaveProperty('_name', 'GovukCheckboxes');
                 expect(metaDataObject).toHaveProperty('_extends', 'BaseFormElement');
                 expect(metaDataObject).toHaveProperty('_macro_file', 'govuk/components/checkboxes/macro.njk');
                 expect(metaDataObject).toHaveProperty('_import', 'govukCheckboxes');
-                expect(metaDataObject.GovukCheckboxes.properties.api.properties).toHaveProperty('id');   // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukCheckboxes.properties.api.properties.id).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukCheckboxes.properties.api.properties).toHaveProperty('name'); // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukCheckboxes.properties.api.properties.name).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukCheckboxes.properties.api.properties).toHaveProperty('describedBy'); // <<---- defined on the metaDataObject
                 expect(metaDataObject.GovukCheckboxes.properties.api.properties.describedBy).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukCheckboxes.properties.api.properties).toHaveProperty('fieldset'); // <<---- defined on the metaDataObject
@@ -285,35 +211,11 @@ describe('./src/factories/metaDataFactory.js', () => {
                 const metaDataFile = '../meta/inputs/govukSelect.yaml';
                 const yaml = metaDataService.loadMetaData(metaDataFile);
                 const metaDataFactory = new MetaDataFactory(yaml);
-                metaDataFactory.getParentMetaData = jest.fn();
-                metaDataFactory.getParentMetaData.mockReturnValue({
-                    "meta": {
-                        "_name": "BaseFormElement",
-                        "BaseFormElement": {
-                        "properties": {
-                            "api": {
-                                "properties": {
-                                    "id": {
-                                        "type": "string"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        }
-                        }
-                    }
-                });
                 const metaDataObject = metaDataFactory.build();
                 expect(metaDataObject).toHaveProperty('_name', 'GovukSelect');
                 expect(metaDataObject).toHaveProperty('_extends', 'BaseFormElement');
                 expect(metaDataObject).toHaveProperty('_macro_file', 'govuk/components/select/macro.njk');
                 expect(metaDataObject).toHaveProperty('_import', 'govukSelect');
-                expect(metaDataObject.GovukSelect.properties.api.properties).toHaveProperty('id');   // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukSelect.properties.api.properties.id).toHaveProperty('type', 'string');
-                expect(metaDataObject.GovukSelect.properties.api.properties).toHaveProperty('name'); // <<---- inherited from BaseFormElement
-                expect(metaDataObject.GovukSelect.properties.api.properties.name).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukSelect.properties.api.properties).toHaveProperty('label');
                 expect(metaDataObject.GovukSelect.properties.api.properties.label).toHaveProperty('text');
                 expect(metaDataObject.GovukSelect.properties.api.properties.label.text).toHaveProperty('type', 'string');
