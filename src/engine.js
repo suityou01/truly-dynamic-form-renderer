@@ -31,6 +31,11 @@ class Engine {
             this.sayError(`${orphanTemplateCount} template${orphanTemplateCount > 1 ? 's were': ' was'} deemed orphaned.`);
         }
     }
+    collateTemplateParts(){
+        this.sayMessage("Collating template parts");
+        Services.templateService.collateTemplateParts();
+        this.sayMessage("Template parts collated");
+    }
     loadMetaData(path = undefined){
         Services.metaDataService.loadMetaData(path);
     }

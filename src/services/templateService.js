@@ -101,6 +101,7 @@ class TemplateService {
             if(parentTemplate){
                 if(parentTemplate.template._parts.filter(p => p.template._id === part.template._id).length === 0){
                     parentTemplate.template._parts.push(part);
+                    this._templates = this._templates.filter(t => t.template._id != part.template._id);
                 } else {
                     console.log("Failed to collate part");
                     console.log(parentTemplate, part);

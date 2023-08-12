@@ -15,7 +15,8 @@ Section:
 Page:
   id: 8b148a5d-d37e-414a-a71b-08017681b0d0
   template: HAS
-  section: $Ref Section1
+  name: Page1
+  section: Section1
   title: Before you start - Appeal a planning decision - GOV.UK
   extends: HASPage
 
@@ -24,8 +25,9 @@ Page:
 LPAEmail:
   id: 228eee93-db3e-42be-8c5b-9c24acdfde58
   extends: Email
-  page: Page
+  page: Page1
   section: Section1
+  template: HAS
   label:
     text: Enter your email address
     isPageHeading: true

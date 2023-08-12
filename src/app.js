@@ -17,6 +17,7 @@ global.engine = engine;
 engine.sayHello();
 engine.loadAllMetaData(METADATA_PATH);
 engine.loadAllTemplates();
+engine.collateTemplateParts();
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
