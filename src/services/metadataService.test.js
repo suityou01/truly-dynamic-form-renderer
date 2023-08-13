@@ -15,5 +15,11 @@ describe('metadataService.js', () => {
             const metaDataObject = Services.metaDataService.getMetaData('GovukInput');
             expect(metaDataObject).toBeTruthy();
         });
+        it('should get a meta data parent', () => {
+            const metaDataObject = Services.metaDataService.getMetaData('GovukInput');
+            const parent = Services.metaDataService.getParent(metaDataObject);
+            expect(parent).toBeTruthy();
+            expect(parent.meta.name).toEqual('BaseFormElement');
+        })
     });
 });

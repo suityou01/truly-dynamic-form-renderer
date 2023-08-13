@@ -1,0 +1,246 @@
+## Grandparent
+
+```javascript
+{
+    file: "base_form_element.yaml",
+    meta: {
+        _name: "BaseFormElement",
+        BaseFormElement: {
+            properties: {
+                api: {
+                    properties: {
+                        id: {
+                            type: "string"
+                        },
+                        name: {
+                            type: "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+## Parent
+
+```javascript
+{
+    file: "govukInput.yaml",
+    meta: {
+        _name: "GovukInput",
+        _extends: "BaseFormElement",
+        _macro_file: "govuk/components/input/macro.njk",
+        _import: "govukInput",
+        GovukInput: {
+            properties: {
+                api: {
+                    properties: {
+                        type: {
+                            type: "string"
+                        },
+                        inputmode: {
+                            type: "string",
+                            enum: [
+                                "none",
+                                "text",
+                                "decimal",
+                                "numeric",
+                                "tel",
+                                "search",
+                                "email",
+                                "url"
+                            ]
+                        },
+                        value: {
+                            type: "string"
+                        },
+                        disabled: {
+                            type: "boolean"
+                        },
+                        describedBy: {
+                            type: "string"
+                        },
+                        label: {
+                            type: "object",
+                            properties: {
+                                text: {
+                                    type: "string",
+                                    default: "What is the name of the event?"
+                                },
+                                classes: {
+                                    type: "string",
+                                    default: "govuk-label--l"
+                                },
+                                isPageHeading: {
+                                    type: "boolean",
+                                    default: true
+                                }
+                            }
+                        },
+                        hint: {
+                            type: "object",
+                            properties: {
+                                text: {
+                                    type: "string"
+                                },
+                                html: {
+                                    type: "string"
+                                },
+                                id: {
+                                    type: "string"
+                                },
+                                classes: {
+                                    type: "string"
+                                },
+                                attributes: {
+                                    type: "object",
+                                    patternProperties: {
+                                        "^\\w$": {
+                                            type: "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            additionalProperties: false
+        }
+    }
+}
+```
+
+## Child
+
+```javascript
+{
+    _templateObjectName: "",
+    _extends: "GovukInput",
+    _id: "a36b3b33-a94b-4c36-81ca-674cb6dc9565",
+    _part: "Email",
+    _content: {
+        Email: {
+            id: "a36b3b33-a94b-4c36-81ca-674cb6dc9565",
+            extends: "GovukInput",
+            api: {
+                inputmode: "email",
+                value: {
+                    pattern: "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",
+                    x-errorMessage: "Enter an email address in the correct format, like name@example.com"
+                }
+            }
+        }
+    },
+    _parts: []
+}
+```
+## Grandchild (linked Grandparent, Parent and Child)
+
+```javascript
+{
+    "file": "govukInput.yaml",
+    "meta": {
+        "_name": "GovukInput",
+        "_extends": "BaseFormElement",
+        "_macro_file": "govuk/components/input/macro.njk",
+        "_import": "govukInput",
+        "GovukInput": {
+            "properties": {
+                "api": {
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        },
+                        "inputmode": {
+                            "type": "string",
+                            "enum": {
+                                "0": "none",
+                                "1": "text",
+                                "2": "decimal",
+                                "3": "numeric",
+                                "4": "tel",
+                                "5": "search",
+                                "6": "email",
+                                "7": "url"
+                            }
+                            },
+                            "value": {
+                            "type": "string"
+                            },
+                            "disabled": {
+                            "type": "boolean"
+                            },
+                            "describedBy": {
+                            "type": "string"
+                            },
+                            "label": {
+                                "type": "object",
+                                "properties": {
+                                    "text": {
+                                        "type": "string",
+                                        "default": "What is the name of the event?"
+                                    },
+                                    "classes": {
+                                        "type": "string",
+                                        "default": "govuk-label--l"
+                                    },
+                                    "isPageHeading": {
+                                        "type": "boolean",
+                                        "default": true
+                                    }
+                                }
+                            },
+                            "hint": {
+                                "type": "object",
+                                "properties": {
+                                    "text": {
+                                        "type": "string"
+                                    },
+                                    "html": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "classes": {
+                                        "type": "string"
+                                    },
+                                    "attributes": {
+                                        "type": "object",
+                                        "patternProperties": {
+                                            "^\\w$": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "additionalProperties": false
+            }
+    
+        "_templateObjectName": "",
+        "_extends": "GovukInput",
+        "_id": "a36b3b33-a94b-4c36-81ca-674cb6dc9565",
+        "_part": "Email",
+        "_content": {
+            "Email": {
+                "id": "a36b3b33-a94b-4c36-81ca-674cb6dc9565",
+                "extends": "GovukInput",
+                "api": {
+                    "inputmode": "email",
+                    "value": {
+                        "pattern": "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",
+                        "x-errorMessage": "Enter an email address in the correct format, like name@example.com"
+                    }
+                }
+            }
+        }
+    }
+}
+```

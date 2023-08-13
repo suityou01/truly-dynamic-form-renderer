@@ -28,8 +28,9 @@ LPAEmail:
   page: Page1
   section: Section1
   template: HAS
-  label:
-    text: Enter your email address
-    isPageHeading: true
-  hint: We'll send an access code to this address, if you have an account
+  api:
+    label:
+      text: Enter your email address
+      isPageHeading: true
+    hint: We'll send an access code to this address, if you have an account
 

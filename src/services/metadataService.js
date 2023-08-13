@@ -3,6 +3,11 @@ class MetaDataService {
     constructor(){
 
     }
+    getParent(metaData){
+        const parentName = metaData.meta.extends;
+        const parent = Services.metaDataService.getMetaData(parentName);
+        return parent;
+    }
     loadAllMetaData(path = "../meta/") {
 
         const metaDirectories = Services.fileLoaderService.listDirectories(path);

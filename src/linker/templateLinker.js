@@ -25,9 +25,13 @@ class TemplateLinker {
         }
         inheritanceChain.push(link);
         try {
-            while(link.extends && link.extends!=''){
-                link = Services.templateService.getParent(link);
-                inheritanceChain.push(link);
+            while(link && ((link.extends && link.extends!='') || link.meta)){
+                if(link.meta){
+                    link = Services.metaDataService.getParent(link);
+                } else {
+                    link = Services.templateService.getParent(link);
+                }
+                if(link) inheritanceChain.push(link);
             }
         } catch(e) {
             console.log(e);
@@ -38,7 +42,13 @@ class TemplateLinker {
         return inheritanceChain.reverse();
     }
     linkTemplate(parent, child){
-        const linkedTemplate = mergeObjects(parent, child);
+        // Need to legislate for template parts here
+        let linkedTemplate;
+        if(this.isTemplatePart()){
+            linkedTemplate = mergeObjects(parent, child);
+        } else {
+            linkedTemplate = mergeObjects(parent, child);
+        }
         return linkedTemplate
     }
     linkInheritanceChain(inheritanceChain){
@@ -54,6 +64,7 @@ class TemplateLinker {
     }
     link(){
         const inheritanceChain = this.getIneritanceChain();
+        console.log(JSON.stringify(inheritanceChain, null, 2));
         const linkedTemplate = this.linkInheritanceChain(inheritanceChain);
         return linkedTemplate;
     }

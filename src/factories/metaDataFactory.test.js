@@ -127,7 +127,7 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject.GovukInput.properties.api.properties.hint.properties).toHaveProperty('attributes');
                 expect(metaDataObject.GovukInput.properties.api.properties.hint.properties.attributes).toHaveProperty('type', 'object');
                 expect(metaDataObject.GovukInput.properties.api.properties.hint.properties.attributes).toHaveProperty('patternProperties');
-                expect(metaDataObject.GovukInput.properties.api.properties.hint.properties.attributes.patternProperties['^.*$']).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukInput.properties.api.properties.hint.properties.attributes.patternProperties['^\\w$']).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukInput).toHaveProperty('additionalProperties', false);
             });
             it('./src/inputs/govukCheckboxes.yaml', () => {
