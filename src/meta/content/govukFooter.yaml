@@ -32,7 +32,7 @@ properties:
                   attributes:
                     type: object
                     patternProperties:
-                      "^.*$":
+                      "^\\w$":
                         type: string
           navigation:
             type: object
@@ -53,7 +53,7 @@ properties:
                   attributes:
                     type: object
                     patternProperties:
-                      "^.*$":
+                      "^\\w$":
                         type: string
           contentLicence:
             type: object
@@ -76,5 +76,5 @@ properties:
           attributes:
             type: object
             patternProperties:
-              "^.*$":
+              "^\\w$":
                 type: string

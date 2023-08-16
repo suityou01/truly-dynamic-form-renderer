@@ -2,39 +2,67 @@ Template:
   HASPage:
     extends: Page
     name: HASPage
-    id: 70c3c98c-9e50-4585-9888-f06e295b1431
-    header:
-      homepageUri: https://www.gov.uk/appeal-planning-decision
-      productName: Householder Appeal Service
-      serviceName: Householder Appeal Service  
-    footer:
-      navigation:
-        - title: Contact the Planning Inspectorate
-          columns: 2
-          items:
-            - href: "tel:03034445000"
-              text: "Customer Support: England 0303 444 5000"
-              attributes:
-                - data-cy: customer-support-telephone-number
-            - href: mailto:enquiries@planninginspectorate.gov.uk
-              text: enquiries@planninginspectorate.gov.uk
-              attributes:
-                - data-cy: customer-support-telephone-number
-        - title: Service information
-          items:
-            - href: https://www.gov.uk/guidance/appeals-casework-portal-privacy-cookies
-              text: Privacy
-              attributes:
-                - data-cy: Privacy
-            - href: https://www.gov.uk/guidance/appeals-casework-portal-privacy-cookies
-              text: Cookies
-              attributes:
-                - data-cy: Cookies
-            - href: /accessibility-statement
-              text: Accessibility
-              attributes:
-                - data-cy: Accessibility
-            - href: https://www.gov.uk/guidance/appeals-casework-portal-terms-and-conditions
-              text: Terms and conditions
-              attributes:
-                - data-cy: Terms and conditions
+    properties:
+      api:
+        properties:
+          id: 
+            value: 70c3c98c-9e50-4585-9888-f06e295b1431
+          header:
+            homepageUri: 
+              value: https://www.gov.uk/appeal-planning-decision
+            productName: 
+              value: Householder Appeal Service
+            serviceName: 
+              value: Householder Appeal Service  
+          footer:
+            navigation:
+              - title: 
+                  value: Contact the Planning Inspectorate
+                columns: 
+                  value: 2
+                items:
+                  - href: 
+                      value: "tel:03034445000"
+                    text: 
+                      value: "Customer Support: England 0303 444 5000"
+                    attributes:
+                      - data-cy: 
+                          value: customer-support-telephone-number
+                  - href: 
+                      value: mailto:enquiries@planninginspectorate.gov.uk
+                    text: 
+                      value: enquiries@planninginspectorate.gov.uk
+                    attributes:
+                      - data-cy: 
+                          value: customer-support-telephone-number
+              - title: 
+                  value: Service information
+                items:
+                  - href: 
+                      value: https://www.gov.uk/guidance/appeals-casework-portal-privacy-cookies
+                    text: 
+                      value: Privacy
+                    attributes:
+                      - data-cy:
+                          value: Privacy
+                  - href: 
+                      value: https://www.gov.uk/guidance/appeals-casework-portal-privacy-cookies
+                    text: 
+                      value: Cookies
+                    attributes:
+                      - data-cy:
+                          value: Cookies
+                  - href: 
+                      value: /accessibility-statement
+                    text:
+                      value: Accessibility
+                    attributes:
+                      - data-cy:
+                          value: Accessibility
+                  - href:
+                      value: https://www.gov.uk/guidance/appeals-casework-portal-terms-and-conditions
+                    text:
+                      value: Terms and conditions
+                    attributes:
+                      - data-cy: 
+                        value: Terms and conditions

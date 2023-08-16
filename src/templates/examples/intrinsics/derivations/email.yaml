@@ -1,8 +1,10 @@
 Email:
   id: a36b3b33-a94b-4c36-81ca-674cb6dc9565
   extends: GovukInput
-  api:
-    inputmode: email
-    value:
-      pattern: ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$
-      x-errorMessage: Enter an email address in the correct format, like name@example.com
+  properties:
+    api:
+      properties:
+        inputmode: email
+        value:
+          pattern: ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$
+          x-errorMessage: Enter an email address in the correct format, like name@example.com

@@ -41,7 +41,7 @@ properties:
                 attributes:
                   type: object
                   patternProperties:
-                    "^.*$":
+                    "^\\w$":
                       type: string
           navigationClasses:
             type: string
@@ -58,5 +58,5 @@ properties:
           attributes:
             type: object
             patternProperties:
-              "^.*$":
+              "^\\w$":
                 type: string

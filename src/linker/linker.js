@@ -1,4 +1,3 @@
-
 const TemplateLinker = require("./templateLinker");
 const MetaDataLinker = require("./metaDataLinker");
 class Linker {

@@ -3,6 +3,7 @@ require("../factories");
 const fs = require("fs");
 
 const TemplateService = require("./templateService");
+const TemplatePointer = require("../types/templatePointer");
 
 describe('./src/servics/templateService.js', () => {
     beforeAll(()=> {
@@ -40,22 +41,23 @@ describe('./src/servics/templateService.js', () => {
     it('should retrieve a parent template', () => {
         const documents = '../templates/has/has.yaml';
         const yaml = Services.yamlFileLoaderService.loadAll(documents)[2];
-        const template = Factories.templateFactory.setRawObject(yaml).build();
-        const parent = Services.templateService.getParent(template);
-        expect(parent).toBeTruthy();
-        expect(parent._templateObjectName).toEqual('HASPage');
-        const grandParent = Services.templateService.getParent(parent);
-        expect(grandParent).toBeTruthy();
-        expect(grandParent.meta._name).toEqual('Page');
+        const templatePointer = Factories.templateFactory.setRawObject(yaml).build();
+        const parentTemplatePointer = Services.templateService.getParent(templatePointer);
+        expect(parentTemplatePointer).toBeTruthy();
+        expect(parentTemplatePointer.template._templateObjectName).toEqual('HASPage');
+        const grandParentMetaData = Services.templateService.getParent(parentTemplatePointer);
+        expect(grandParentMetaData).toBeTruthy();
+        expect(grandParentMetaData.meta._name).toEqual('Page');
     });
     it('should retrieve the parent of a template part', () => {
         const templateId = 'ee9ec28b-df53-4de7-ac63-9495968ac984';
         const partName = 'LPAEmail';
-        const part = Services.templateService.getPartByNameAndTemplateId(partName, templateId);
-        const content = part.template._content['LPAEmail'];
+        const partTemplatePointer = Services.templateService.getPartByNameAndTemplateId(partName, templateId);
+        const content = partTemplatePointer.template._content['LPAEmail'];
         const parent = Services.templateService.getParent(content);
         expect(parent).toBeTruthy();
-        expect(parent._id).toEqual('a36b3b33-a94b-4c36-81ca-674cb6dc9565');
+        expect(parent.template._id).toEqual('a36b3b33-a94b-4c36-81ca-674cb6dc9565');
+        expect(parent instanceof TemplatePointer).toEqual(true);
     });
     it('should load all templates', () => {
         const t = new TemplateService();

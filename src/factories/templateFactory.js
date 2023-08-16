@@ -1,13 +1,26 @@
 const Template = require("../types/templateType");
-
+const TemplatePointer = require("../types/templatePointer");
+const TemplatePart = require("../types/templatePart");
 class TemplateFactory {
-    _raw;    
+    _raw;
+    _file;
     constructor(yaml){
         this._raw = yaml;
     }
     setRawObject(o){
         this._raw = o;
         return this;
+    }
+    setFile(file){
+        this._file = file;
+        return this;
+    }
+    getRawContent(){
+        const raw = { ...this._raw };
+        if(raw.hasOwnProperty('Template')){
+            return raw.Template;
+        }
+        return raw;
     }
     getTemplateId(templateObjectName){
         if(this._raw.Template[templateObjectName].hasOwnProperty('id')){
@@ -51,16 +64,20 @@ class TemplateFactory {
         return this._raw.hasOwnProperty('Template');
     }
     build(){
-        const templateObject = new Template();
-        templateObject.content = { ...this._raw };
+        let templateObject;
+        const templatePointer = new TemplatePointer();
+        templatePointer.file = this._file;
+
         try {
             if(this.isTopLevelTemplate()) {
+                templateObject = new Template();
                 let templateObjectName = this.getTemplateObjectName();
                 templateObject._templateObjectName = templateObjectName;
                 templateObject.name = this.getTemplateName(templateObjectName);
                 templateObject.id = this.getTemplateId(templateObjectName);
                 templateObject.extends = this.getTemplateExtends(templateObjectName);
             } else {
+                templateObject = new TemplatePart();
                 templateObject.part = this.getTemplatePart();
                 templateObject.name = this.getTemplatePartName();
                 templateObject.id = this.getTemplatePartId();
@@ -73,7 +90,9 @@ class TemplateFactory {
             throw new Error(e);
         }
         finally{
-            return templateObject;
+            templateObject.content = this.getRawContent();
+            templatePointer.template = templateObject;
+            return templatePointer;
         }
     }
 

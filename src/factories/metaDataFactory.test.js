@@ -282,7 +282,7 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject.GovukHeader.properties.api.properties.navigation.item.properties).toHaveProperty('attributes');
                 expect(metaDataObject.GovukHeader.properties.api.properties.navigation.item.properties.attributes).toHaveProperty('type', 'object');
                 expect(metaDataObject.GovukHeader.properties.api.properties.navigation.item.properties.attributes).toHaveProperty('patternProperties');
-                expect(metaDataObject.GovukHeader.properties.api.properties.navigation.item.properties.attributes.patternProperties["^.*$"]).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukHeader.properties.api.properties.navigation.item.properties.attributes.patternProperties["^\\w$"]).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukHeader.properties.api.properties).toHaveProperty('navigationClasses');
                 expect(metaDataObject.GovukHeader.properties.api.properties.navigationClasses).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukHeader.properties.api.properties).toHaveProperty('navigationLabel');
@@ -296,7 +296,7 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject.GovukHeader.properties.api.properties).toHaveProperty('attributes');
                 expect(metaDataObject.GovukHeader.properties.api.properties.attributes).toHaveProperty('type', 'object');
                 expect(metaDataObject.GovukHeader.properties.api.properties.attributes).toHaveProperty('patternProperties');
-                expect(metaDataObject.GovukHeader.properties.api.properties.attributes.patternProperties["^.*$"]).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukHeader.properties.api.properties.attributes.patternProperties["^\\w$"]).toHaveProperty('type', 'string');
             });
             it('./src/meta/content/govukFooter.yaml', () => {
                 const metaDataFile = '../meta/content/govukFooter.yaml';
@@ -324,7 +324,7 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject.GovukFooter.properties.api.properties.meta.properties.items.item).toHaveProperty('attributes');
                 expect(metaDataObject.GovukFooter.properties.api.properties.meta.properties.items.item.attributes).toHaveProperty('type', 'object');
                 expect(metaDataObject.GovukFooter.properties.api.properties.meta.properties.items.item.attributes).toHaveProperty('patternProperties');
-                expect(metaDataObject.GovukFooter.properties.api.properties.meta.properties.items.item.attributes.patternProperties["^.*$"]).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukFooter.properties.api.properties.meta.properties.items.item.attributes.patternProperties["^\\w$"]).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukFooter.properties.api.properties).toHaveProperty('navigation');
                 expect(metaDataObject.GovukFooter.properties.api.properties.navigation).toHaveProperty('type', 'object');
                 expect(metaDataObject.GovukFooter.properties.api.properties.navigation.properties).toHaveProperty('title');
@@ -343,7 +343,7 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject.GovukFooter.properties.api.properties.navigation.properties.items.item).toHaveProperty('attributes');
                 expect(metaDataObject.GovukFooter.properties.api.properties.navigation.properties.items.item.attributes).toHaveProperty('type', 'object');
                 expect(metaDataObject.GovukFooter.properties.api.properties.navigation.properties.items.item.attributes).toHaveProperty('patternProperties');
-                expect(metaDataObject.GovukFooter.properties.api.properties.navigation.properties.items.item.attributes.patternProperties["^.*$"]).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukFooter.properties.api.properties.navigation.properties.items.item.attributes.patternProperties["^\\w$"]).toHaveProperty('type', 'string');
                 expect(metaDataObject.GovukFooter.properties.api.properties).toHaveProperty('contentLicence');
                 expect(metaDataObject.GovukFooter.properties.api.properties.contentLicence).toHaveProperty('type', 'object');
                 expect(metaDataObject.GovukFooter.properties.api.properties.contentLicence.properties).toHaveProperty('text');
@@ -357,7 +357,7 @@ describe('./src/factories/metaDataFactory.js', () => {
                 expect(metaDataObject.GovukFooter.properties.api.properties).toHaveProperty('attributes');
                 expect(metaDataObject.GovukFooter.properties.api.properties.attributes).toHaveProperty('type', 'object');
                 expect(metaDataObject.GovukFooter.properties.api.properties.attributes).toHaveProperty('patternProperties');
-                expect(metaDataObject.GovukFooter.properties.api.properties.attributes.patternProperties["^.*$"]).toHaveProperty('type', 'string');
+                expect(metaDataObject.GovukFooter.properties.api.properties.attributes.patternProperties["^\\w$"]).toHaveProperty('type', 'string');
                 
             });
             it('./src/meta/content/govukBackLink.yaml', () => {

@@ -13,12 +13,10 @@ class CompileStream extends Transform {
         const linker = new Linker();
         linker.setLinkableObject(part);
         const linked = linker.link();
-        console.log(linked);
     }
 
     _transform(chunk, encoding, cb){
         this._chunk = chunk;
-        console.log(chunk);
         cb();
     }
 

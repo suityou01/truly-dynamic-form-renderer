@@ -25,7 +25,7 @@ describe('./src/linker/templateLinker.js', () => {
         const partName = 'LPAEmail';
         const part = Services.templateService.getPartByNameAndTemplateId(partName, templateId);
         const linker = new Linker();
-        linker.setLinkableObject(part);
+        linker.setLinkableObject(part)
         const linked = linker.link();
     });
 });

@@ -137,6 +137,17 @@ const mergeObjects = (objectA, objectB) => {
     return _obj;
 }
 
+
+const deepMerge = (a, b) => {
+    const result = {};
+    for (const key of new Set([...Object.keys(a), ...Object.keys(b)])) {
+      result[key] =
+        a[key]?.constructor === Object && b[key]?.constructor === Object
+          ? deepMerge(a[key], b[key])
+          : structuredClone(b[key] !== undefined ? b[key] : a[key]);
+    }
+    return result;
+}
 module.exports = {
     getKeyPointerFromObject,
     getValueFromObject,
@@ -145,5 +156,6 @@ module.exports = {
     recurseObjectProperties,
     createKeyOnObject,
     mergeKeys,
-    mergeObjects
+    mergeObjects,
+    deepMerge
 }

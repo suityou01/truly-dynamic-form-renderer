@@ -1,8 +1,11 @@
-class Template {
-    _templateObjectName = "";
+class TemplatePart {
     _extends = "";
+    _page = "";
+    _section = "";
+    _template = "";
     _name = "";
     _id = "";
+    _part = "";
     _content;
     _parts = [];
 
@@ -11,6 +14,27 @@ class Template {
     }
     set extends(value) {
         this._extends = value;
+    }
+
+    get page() {
+        return this._page;
+    }
+    set page(value) {
+        this._page = value;
+    }
+
+    get section() {
+        return this._section;
+    }
+    set section(value) {
+        this._section = value;
+    }
+
+    get template() {
+        return this._template;
+    }
+    set template(value) {
+        this._template = value;
     }
 
     get name() {
@@ -25,6 +49,13 @@ class Template {
     }
     set id(value) {
         this._id = value;
+    }
+
+    get part() {
+        return this._part;
+    }
+    set part(value){
+        this._part = value;
     }
 
     get content() {
@@ -50,4 +81,4 @@ class Template {
     }
 }
 
-module.exports = Template;
+module.exports = TemplatePart;

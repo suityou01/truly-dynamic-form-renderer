@@ -1,3 +1,22 @@
+/**
+ * @typedef Template
+ * @param { string } templateObjectName
+ * @param { string } extends
+ * @param { string } name
+ * @param { uuid } id
+ * @param { object } content 
+ */
+
+const TemplatePointer = require("../types/templatePointer");
+const Template = require("../types/templateType");
+const TemplatePart = require("../types/templatePart");
+
+/**
+ * @typedef TemplatePointer
+ * @param {string} file
+ * @param {Template} template
+ */
+
 class TemplateService {
     
     _templates = [];
@@ -7,10 +26,36 @@ class TemplateService {
     constructor(){
 
     }
+    /**
+     * @param {Template} template 
+     * @returns { string }
+     */
     getTemplateObjectName(template){
         return template.templateObjectName;
     }
-    getParent(template){
+    /**
+     * 
+     * @param {TemplatePointer} templatePointer 
+     * @returns {TemplatePointer} 
+     */
+    getParentFromTemplatePointer(templatePointer){
+        const parentName = templatePointer.template.extends;
+        let parent = Services.templateService.getTemplateByTemplateObjectName(parentName);
+        if(!parent){
+            parent = Services.templateService.getOrphanTemplateByName(parentName);
+        }
+        if(!parent){
+            parent = Services.metaDataService.getMetaData(parentName);
+            return parent;
+        }
+        return parent;
+    }
+    /**
+     * 
+     * @param {Template} template 
+     * @returns {TemplatePointer} 
+     */
+    getParentFromTemplate(template){
         const parentName = template.extends;
         let parent = Services.templateService.getTemplateByTemplateObjectName(parentName);
         if(!parent){
@@ -20,8 +65,26 @@ class TemplateService {
             parent = Services.metaDataService.getMetaData(parentName);
             return parent;
         }
-        return parent.template;
+        return parent;
     }
+    /**
+     * @param {Template | TemplatePointer} template 
+     * @returns 
+     */
+    getParent(template){
+        if(template instanceof TemplatePointer){
+            return this.getParentFromTemplatePointer(template);
+        } else if (template instanceof Template){
+            return this.getParentFromTemplate(template);
+        } else {
+            return this.getParentFromTemplate(template);
+        }
+    }
+    /**
+     * 
+     * @param {uuid} id 
+     * @returns { TemplatePointer }
+     */
     getTemplateById(id){
         return this._templates.filter(template => 
             template.template && 
@@ -29,6 +92,10 @@ class TemplateService {
             template.template.id === id
         )[0];
     }
+    /**
+     * @param { string } templateObjectName 
+     * @returns { Template }
+     */
     getTemplateByTemplateObjectName(templateObjectName){
         return this._templates.filter(template =>
             template.template &&
@@ -36,6 +103,10 @@ class TemplateService {
             template.template._templateObjectName === templateObjectName
         )[0];
     }
+    /**
+     * @param {Template} template 
+     * @returns { boolean }
+     */
     validateTemplate(templateObject) {
         return true;
     }
@@ -87,22 +158,16 @@ class TemplateService {
             files.forEach(file => {
                 const rawTemplateArray = Services.yamlFileLoaderService.loadAll(`${dir}/${file}`);
                 rawTemplateArray.forEach(rawTemplate => {
-                    const templateObject = Factories.templateFactory.setRawObject(rawTemplate).build();
+                    const templateObject = Factories.templateFactory.setRawObject(rawTemplate).setFile(file).build();
                     if(this.validateTemplate(templateObject)){
-                        this._templates.push({
-                            file: file,
-                            template: templateObject
-                        });
+                        this._templates.push(templateObject);
                     } else {
-                        this._invalidTemplates.push({
-                            file: file,
-                            template: templateObject
-                        });
+                        this._invalidTemplates.push(templateObject);
                     }
                 });
             });    
         });
-        
+
     }
     collateTemplateParts() {
         this._templates.filter(t => t.template._part !='').forEach(part => {
