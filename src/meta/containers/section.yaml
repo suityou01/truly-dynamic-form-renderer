@@ -1,0 +1,18 @@
+$id: '/govuk/containers/section'
+type: object
+properties:
+  Section:
+    type: object
+    properties:
+      api:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+          template:
+            type: string
+          extends:
+            type: string
+          title:
+            type: string

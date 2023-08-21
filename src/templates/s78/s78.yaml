@@ -1,21 +1,22 @@
 Template:
-  HAS:
-    name: Householder Appeals Service
-    id: ee9ec28b-df53-4de7-ac63-9495968ac984
+  S78:
+    name: S78 Service
+    id: e7b6dae8-7297-454c-8004-5eb869abea92
 
 ---
 
 Section:
-  template: HAS
   extends: Section
+  template: S78
   name: Section1
-  id: 234ae48f-451d-4222-8805-8fd96e9564ff
+  title: Section One
+  id: 8dd7b568-88cd-4304-a73d-03ea687904f7
 
 ---
 
 Page:
-  id: 8b148a5d-d37e-414a-a71b-08017681b0d0
-  template: HAS
+  id: 8aba3a40-7a02-41c5-83b9-7d430f3ccbf7
+  template: S78
   name: Page1
   section: Section1
   title: Before you start - Appeal a planning decision - GOV.UK
@@ -24,11 +25,11 @@ Page:
 ---
 
 LPAEmail:
-  id: 228eee93-db3e-42be-8c5b-9c24acdfde58
+  id: c0df434c-a384-41cb-ad3c-8ce3912cbbcd
   extends: Email
   page: Page1
   section: Section1
-  template: HAS
+  template: S78
   type: object
   properties:
     api:

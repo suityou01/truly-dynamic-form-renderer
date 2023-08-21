@@ -1,6 +1,8 @@
 const Template = require("../types/templateType");
+const TemplatePart = require("../types/templatePart");
+const TemplatePointer = require("../types/templatePointer");
 const MetaData = require("../types/metaType");
-const { mergeObjects } = require('../lib/object/object');
+const { mergeObjects, deepMerge } = require('../lib/object/object');
 
 class TemplateLinker {
     _template;
@@ -12,11 +14,20 @@ class TemplateLinker {
         this._template = template;
         return this;
     }
+    isTemplatePointer(link){
+        return link instanceof TemplatePointer;
+    }
     isTemplatePart(link){
-        return link._part != '' && typeof link._part != 'undefined';
+        if(this.isTemplatePointer(link)){
+            return link.template instanceof TemplatePart;
+        }
+        return link instanceof TemplatePart;
     }
     isTemplate(link){
-        return !this.isTemplatePart(link) && link instanceof Template && link._templateObjectName!="";
+        if(this.isTemplatePointer(link)){
+            return link.template instanceof Template;
+        }
+        return link instanceof Template;
     }
     isMetaData(link){
         return link.meta && link.meta instanceof MetaData ? true : false;
@@ -43,10 +54,21 @@ class TemplateLinker {
         return inheritanceChain.reverse();
     }
     linkTemplatePartToTemplatePart(parent, child){
-        console.log(parent, child);
+        const parentName = parent.template._part;
+        const childName = child.template._part;
+        const parentOptions = parent.template._content[parentName].properties;
+        const childOptions = child.template._content[childName].properties;
+        const merged = deepMerge(parentOptions, childOptions);
+        child.template._content[childName].properties = merged;
+        return child;
     }
     linkTemplateToTemplate(parent, child){
-        console.log(parent, child);
+        const parentTemplate = parent.template;
+        const childTemplate = child.template;
+
+        for(const part of parentTemplate.parts){
+            console.log(part);
+        }
     }
     linkTemplate(parent, child){
         let linkedTemplate;

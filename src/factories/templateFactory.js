@@ -44,6 +44,15 @@ class TemplateFactory {
     getTemplatePartName(){
         return Object.values(this._raw)[0].name;
     }
+    getTemplatePartPage(){
+        return Object.values(this._raw)[0].page;
+    }
+    getTemplatePartSection(){
+        return Object.values(this._raw)[0].section;
+    }
+    getTemplatePartTemplate(){
+        return Object.values(this._raw)[0].template;
+    }
     getTemplatePartId(){
         return Object.values(this._raw)[0].id;
     }
@@ -82,6 +91,9 @@ class TemplateFactory {
                 templateObject.name = this.getTemplatePartName();
                 templateObject.id = this.getTemplatePartId();
                 templateObject.extends = Object.values(this._raw)[0].extends;
+                templateObject.page = this.getTemplatePartPage();
+                templateObject.section = this.getTemplatePartSection();
+                templateObject.template = this.getTemplatePartTemplate();
             }
         }
         catch(e) {

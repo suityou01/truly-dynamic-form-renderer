@@ -20,6 +20,6 @@ describe('./src/streams/compile.js', () => {
     });
     it('should ', () => {
         compileStream._chunk = chunk;
-        compileStream.compile();  
+        compileStream.compile();
     });
 });

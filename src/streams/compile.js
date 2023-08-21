@@ -13,6 +13,7 @@ class CompileStream extends Transform {
         const linker = new Linker();
         linker.setLinkableObject(part);
         const linked = linker.link();
+        console.log(JSON.stringify(linked, null, 2));
     }
 
     _transform(chunk, encoding, cb){
